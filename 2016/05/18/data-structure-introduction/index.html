@@ -19,15 +19,15 @@
 <meta property="og:url" content="http://blog.showzeng.cn/2016/05/18/data-structure-introduction/index.html">
 <meta property="og:site_name" content="showzeng's blog">
 <meta property="og:description" content="数据结构是一门研究非数值计算的程序设计问题中计算机的操作对象以及它们之间的关系和操作的学科。主要研究数据的逻辑结构、数据在计算机中的组织方式（存储结构）以及对数据进行的各种非数值运算的方法和算法。因此，数据结构主要有3个方面：数据的逻辑结构、数据的存储结构、数据的算法。">
-<meta property="og:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/%E5%9B%9B%E7%B1%BB%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg">
+<meta property="og:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg">
 <meta property="og:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.jpg">
-<meta property="og:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/%E4%BE%8B%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E5%9B%BE.jpg">
+<meta property="og:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/%E4%BE%8B%E5%AD%90%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E5%9B%BE.jpg">
 <meta property="og:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/%E7%AE%97%E6%B3%95.jpg">
-<meta property="og:updated_time" content="2016-08-31T11:21:28.822Z">
+<meta property="og:updated_time" content="2016-09-10T06:21:46.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构之绪论篇">
 <meta name="twitter:description" content="数据结构是一门研究非数值计算的程序设计问题中计算机的操作对象以及它们之间的关系和操作的学科。主要研究数据的逻辑结构、数据在计算机中的组织方式（存储结构）以及对数据进行的各种非数值运算的方法和算法。因此，数据结构主要有3个方面：数据的逻辑结构、数据的存储结构、数据的算法。">
-<meta name="twitter:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/%E5%9B%9B%E7%B1%BB%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg">
+<meta name="twitter:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg">
     
     
         
@@ -268,7 +268,7 @@
 <p>（2）线性结构。结构中的数据元素之间存在一对一的关系。除了首尾结点，任何一个结点都有一个唯一的前驱和一个唯一的后继。</p>
 <p>（3）树形结构。结构中的数据元素之间存在一对多的关系。除了树根节点，任何一个结点最多有一个前驱，可以有多个后继。是一种典型的非线性结构。</p>
 <p>（4）图形结构。结构中的数据元素之间存在多对多的关系。特征是：任何一个元素可以有多个前驱，也可以有多个后继，是一种多对多的前驱后继关系。也称网状结构。</p>
-<p><img src="http://7xtt0k.com1.z0.glb.clouddn.com/%E5%9B%9B%E7%B1%BB%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg" alt="四类基本类型"></p>
+<p><img src="http://7xtt0k.com1.z0.glb.clouddn.com/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg" alt="四类基本类型"></p>
 <blockquote>
 <p>数据结构包括以下三方面内容：数据的逻辑结构、存储结构和数据运算。</p>
 </blockquote>
@@ -276,7 +276,7 @@
 <p><strong>逻辑结构</strong></p>
 <p>从数据结构的概念可以知道，数据结构有两个要素：一个是数据元素的集合，另一个是关系的集合。在形式上，数据结构可用一个二元组来表示。<br>数据结构的形式定义为：Data_Structure = (D,R)  其中，D是数据元素（又称结点）的有限集，R是D上关系的有限集。eg：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">D = (K, R)</div><div class="line">K = &#123;1, 2, 3, 4, 5&#125;</div><div class="line">R = &#123;&lt;1, 2&gt;, &lt;1, 3&gt;, &lt;3, 4&gt;, &lt;3, 5&gt;&#125;</div></pre></td></tr></table></figure>
-<p>其对应树形逻辑结构图：<br><img src="http://7xtt0k.com1.z0.glb.clouddn.com/%E4%BE%8B%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E5%9B%BE.jpg" alt="例树形结构图"></p>
+<p>其对应树形逻辑结构图：<br><img src="http://7xtt0k.com1.z0.glb.clouddn.com/%E4%BE%8B%E5%AD%90%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E5%9B%BE.jpg" alt="例树形结构图"></p>
 <p><strong>存储结构</strong></p>
 <p>! 顺序存储结构。把逻辑上相邻的结点存储在物理上相邻的存储单元里，结点之间的逻辑关系由存储单元位置的邻接关系来体现。通常借助程序语言中的数组来描述。</p>
 <p>优点：占用较少的存储空间。 缺点：只能使用相邻的一整块存储单元，因此可能产生较多的碎片现象。</p>
