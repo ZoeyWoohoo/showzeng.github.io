@@ -21,7 +21,7 @@
 <meta property="og:description" content="网络请求常常伴随着数据的处理，而今 JSON 格式比较流行，就来看看 Android 中是如何去解析它的。">
 <meta property="og:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.3/Project-Structure-screen-shot.png">
 <meta property="og:image" content="http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.3/Choose-Library-Dependency-screen-shot.png">
-<meta property="og:updated_time" content="2016-09-17T12:25:11.192Z">
+<meta property="og:updated_time" content="2016-10-26T05:50:56.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gson 解析那些事">
 <meta name="twitter:description" content="网络请求常常伴随着数据的处理，而今 JSON 格式比较流行，就来看看 Android 中是如何去解析它的。">
@@ -71,7 +71,7 @@
         
     
 
-<header id="header" data-behavior="5">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/ ">showzeng&#39;s blog</a>
@@ -95,7 +95,7 @@
         
     
 
-<nav id="sidebar" data-behavior="5">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -174,10 +174,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="#about"
-                            
-                        >
+                        <a  class="sidebar-button-link " href="http://www.showzeng.cn" target="_blank">
                     
                         <i class="sidebar-button-icon fa fa-lg fa-question"></i>
                         <span class="sidebar-button-desc">About</span>
@@ -225,7 +222,7 @@
                     text-left
                     post-header-cover--full"
              style="background-image:url('http://7xtt0k.com1.z0.glb.clouddn.com/blog/tree.jpg');"
-             data-behavior="5">
+             data-behavior="4">
             
                 <div class="post-header main-content-wrap text-left">
     
@@ -252,7 +249,7 @@
             
         </div>
 
-            <div id="main" data-behavior="5"
+            <div id="main" data-behavior="4"
                  class="hasCover
                         hasCoverMetaIn
                         ">
@@ -301,12 +298,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Root</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;Data&gt; data;</div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> status;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Root</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMessage</span><span class="params">(String message)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.message;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStatus</span><span class="params">(<span class="keyword">int</span> status)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.status = status;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStatus</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.status;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setData</span><span class="params">(List&lt;Data&gt; data)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.data = data;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Data&gt; <span class="title">getData</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这就是一个标准的 JavaBean 了，提供默认的无参构造器，私有变量，以及暴露出各对象的 set 和 get 方法。</p>
 <p>再来看 data 里面的数据，可以看出是每本书的信息所对应的键名是相同的，所以可以用同一个实体类表示，我们接着写这个 Data 类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Data</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> String author, barCode, borrowDate, check, returnDate, title;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAuthor</span><span class="params">(String author)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.author = author;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getAuthor</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.author;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBarCode</span><span class="params">(String barCode)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.barCode = barCode;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getBarCode</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.barCode;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBorrowDate</span><span class="params">(String borrowDate)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.borrowDate = borrowDate;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getBorrowDate</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.borrowDate;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCheck</span><span class="params">(String check)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.check = check;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getCheck</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.check;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setReturnDate</span><span class="params">(String returnDate)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.returnDate = returnDate;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getReturnDate</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.returnDate;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTitle</span><span class="params">(String title)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.title = title;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getTitle</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.title;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Data</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> String author, barCode, borrowDate, check, returnDate, title;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAuthor</span><span class="params">(String author)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.author = author;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getAuthor</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.author;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBarCode</span><span class="params">(String barCode)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.barCode = barCode;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getBarCode</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.barCode;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBorrowDate</span><span class="params">(String borrowDate)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.borrowDate = borrowDate;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getBorrowDate</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.borrowDate;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCheck</span><span class="params">(String check)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.check = check;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getCheck</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.check;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setReturnDate</span><span class="params">(String returnDate)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.returnDate = returnDate;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getReturnDate</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.returnDate;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTitle</span><span class="params">(String title)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.title = title;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getTitle</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.title;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如果你要把这个 Data 类内嵌到刚才的 Root 类里面，必须声明是静态类型，不然是不能解析，示例如下。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Root</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;Data&gt; data;</div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> status;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Root</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">    <span class="comment">//这里省略 set 和 get 方法</span></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Data</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> String author, barCode, borrowDate, check, returnDate, title;</div><div class="line"></div><div class="line">        <span class="comment">//这里省略 set 和 get 方法</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>还有一点就是，在返回的 JSON 数据中，如果有不需要的数据，在构造实体类时，是可以不需要写出来的。</p>
-<h4 id="3-解析第三步：干"><a href="#3-解析第三步：干" class="headerlink" title="3. 解析第三步：干"></a>3. 解析第三步：干</h4><p>实体类都写好了，还有什么好说的，就是干。 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getLibraryInfo</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">//此方法为部分代码,且这里省略网络请求部分</span></div><div class="line">    </div><div class="line">    Response response = client.newCall(request).execute();</div><div class="line">    String responseBody = response.body().string();</div><div class="line">        </div><div class="line">    Gson gson = <span class="keyword">new</span> Gson();</div><div class="line">    Root root = gson.fromJson(responseBody, Root.class);</div><div class="line"></div><div class="line">    <span class="comment">//这里是示例，取出一些数据</span></div><div class="line">    status = root.getStatus();</div><div class="line">    message = root.getMessage();</div><div class="line">    </div><div class="line">    List&lt;Data&gt; data = root.getData();</div><div class="line">    title = data.get(<span class="number">1</span>).getTitle();</div><div class="line">    author = data.get(<span class="number">1</span>).getAuthor();</div><div class="line">    barCode = data.get(<span class="number">1</span>).getBarCode();</div><div class="line">    borrowDate = data.get(<span class="number">1</span>).getBorrowDate();</div><div class="line">    numberOfBooks = data.size();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-解析第三步：干"><a href="#3-解析第三步：干" class="headerlink" title="3. 解析第三步：干"></a>3. 解析第三步：干</h4><p>实体类都写好了，还有什么好说的，就是干。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getLibraryInfo</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">//此方法为部分代码,且这里省略网络请求部分</span></div><div class="line"></div><div class="line">    Response response = client.newCall(request).execute();</div><div class="line">    String responseBody = response.body().string();</div><div class="line"></div><div class="line">    Gson gson = <span class="keyword">new</span> Gson();</div><div class="line">    Root root = gson.fromJson(responseBody, Root.class);</div><div class="line"></div><div class="line">    <span class="comment">//这里是示例，取出一些数据</span></div><div class="line">    status = root.getStatus();</div><div class="line">    message = root.getMessage();</div><div class="line"></div><div class="line">    List&lt;Data&gt; data = root.getData();</div><div class="line">    title = data.get(<span class="number">1</span>).getTitle();</div><div class="line">    author = data.get(<span class="number">1</span>).getAuthor();</div><div class="line">    barCode = data.get(<span class="number">1</span>).getBarCode();</div><div class="line">    borrowDate = data.get(<span class="number">1</span>).getBorrowDate();</div><div class="line">    numberOfBooks = data.size();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里有个点，是在我不懂之前一直疑惑且写了很多无用赘余的代码，就是在 <code>Root root = gson.fromJson(responseBody, Root.class);</code> 这步执行完后，相应的数据其实就已经填充到对应的实体类的变量中，所以直接 get 就可以取到数据啦！那可能有人要问了，这里的 set 方法有什么用，根本就没用上啊。只能说只是你没有碰上那个需求，所以没用上，如果说你的程序里需要在请求回来的数据里设定一些特定的值，此时你就需要用到 set 方法。</p>
 <p>这里取出各个数据（ List 可以遍历取出），之后你需要什么要的格式和组合就凭君调遣啦！我的习惯是将这个图书馆数据查询获取模块写成一个 Util ，应用中需要用到什么样的数据，在 Util 里写一个对应的方法返回即可。</p>
 
@@ -398,7 +395,7 @@
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -455,7 +452,7 @@
 
 
                 </div>
-                <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
     <ul class="share-options">
         <li class="share-option">
             <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.showzeng.cn/2016/09/11/Something-about-Gson-parsing/">
@@ -632,12 +629,6 @@
                 
                 <div class="media">
                     
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://blog.showzeng.cn/2016/09/11/Something-about-Gson-parsing/">
-                            <img class="media-image" src="http://7xtt0k.com1.z0.glb.clouddn.com/blog/tree.jpg" width="90" height="90"/>
-                        </a>
-                    </div>
-                    
                     <div class="media-body">
                         <a class="link-unstyled" href="http://blog.showzeng.cn/2016/09/11/Something-about-Gson-parsing/">
                             <h3 class="media-heading">Gson 解析那些事</h3>
@@ -680,6 +671,25 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://blog.showzeng.cn/2016/10/22/make-pixel-perfect-icon/">
+                            <h3 class="media-heading">(译)打造完美像素图标</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Oct 22, 2016
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p><strong>我开始制作完美像素图标。以下是一路探索所得。</strong></p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -687,7 +697,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                6 posts found
+                7 posts found
             </p>
         </div>
     </div>
