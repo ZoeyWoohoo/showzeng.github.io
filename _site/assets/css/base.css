@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: auto;
+  min-height: 100%;
+  padding: 0 10%;
+  width: 80%;
+  background-color: rgb(223,223,223);
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1em;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+#container {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+}
+
+@media screen and (max-device-width: 768px) {
+  body {
+    padding: 0;
+    width: 100%;
+  }
+}

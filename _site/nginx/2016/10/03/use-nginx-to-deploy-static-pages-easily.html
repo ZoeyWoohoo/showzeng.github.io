@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>使用 Nginx 部署静态页面</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="showzeng's blog" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="showzeng" />
+    <meta name="copyright" content="showzeng" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style type="text/css">
+
+    </style>
+    <link rel="stylesheet" href="/assets/css/footer.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/post.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/syntax.css" type="text/css" />
+    <link rel="shortcut icon" href="http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/head-brains.png" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="" />
+
+</head>
+
+<body>
+    <div id="post-container">
+        <div class="post-title">
+            <div class="inner-title">
+                <div class="post-title-back">
+                    <a href="/" class="home-link"><img src="http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/home2.png" class="home" /></a>
+                </div>
+                <div class="post-article-title">
+                    <p>使用 Nginx 部署静态页面</p>
+                </div>
+            </div>
+        </div>
+        <div class="post-content">
+
+            <blockquote>
+  <ul>
+    <li>文章来源：itsCoder 的 <a href="https://github.com/itsCoder/weeklyblog">WeeklyBolg</a> 项目</li>
+    <li>itsCoder主页：<a href="http://itscoder.com/">http://itscoder.com/</a></li>
+    <li>作者：<a href="https://github.com/showzeng">showzeng</a></li>
+    <li>审阅者：<a href="https://github.com/xcc3641">谢三弟</a></li>
+  </ul>
+</blockquote>
+
+<h4 id="nginx-"><strong>Nginx 介绍</strong></h4>
+
+<p>Nginx 是俄罗斯人编写的十分轻量级的 HTTP 服务器, Nginx，它的发音为 “ engine X ”，是一个高性能的 HTTP 和反向代理服务器，同时也是一个 IMAP/ POP3/ SMTP 代理服务器。Nginx 是由俄罗斯人 Igor Sysoev 为俄罗斯访问量第二的 Rambler.ru 站点开发的，它已经在该站点运行超过两年半了。Igor Sysoev 在建立的项目时,使用基于 BSD 许可。</p>
+
+<p>英文主页：<a href="http://nginx.net">http://nginx.net</a>。</p>
+
+<p>Nginx 作为 HTTP 服务器，有以下几项基本特性：</p>
+
+<ul>
+  <li>处理静态文件，索引文件以及自动索引；打开文件描述符缓冲。</li>
+  <li>无缓存的反向代理加速，简单的负载均衡和容错。</li>
+  <li>FastCGI，简单的负载均衡和容错。</li>
+  <li>模块化的结构。包括 gzipping, byte ranges, chunked responses,以及 SSI-filter 等 filter。如果由 Fast CGI 或其它代理服务器处理单页中存在的多个 SSI，则这项处理可以并行运行，而不需要相互等待。</li>
+  <li>支持 SSL 和 TLSSNI。</li>
+</ul>
+
+<p>即 Nginx 的优点：轻量、高性能、并发能力强。用来部署静态页面也是相当便捷。</p>
+
+<p>这种高性能得益于 Nginx 的框架。在 Nginx 启动后，会有一个 master 进程和多个 worker 进程。master 进程主要用来管理 worker 进程，包含：接收来自外界的信号，向各 worker 进程发送信号，监控 worker 进程的运行状态，当 worker 进程退出后(异常情况下)，会自动重新启动新的 worker 进程。而基本的网络事件，则是放在 worker 进程中来处理的。多个 worker 进程之间是对等的，他们同等竞争来自客户端的请求，各进程互相之间是独立的。一个请求，只可能在一个 worker 进程中处理，一个 worker 进程，不可能处理其它进程的请求。worker 进程的个数是可以设置的，一般我们会设置与机器 cpu 核数一致，这与 Nginx 的进程模型以及事件处理模型有关。</p>
+
+<h4 id="nginx"><strong>为何选用 Nginx</strong></h4>
+
+<p>说到 Nginx，可能第一反应就是 <code class="highlighter-rouge">反向代理</code> 和 <code class="highlighter-rouge">负载均衡</code> 了。那么什么是 <code class="highlighter-rouge">反向代理</code>，什么又是 <code class="highlighter-rouge">负载均衡</code> 呢？</p>
+
+<p><strong>反向代理</strong></p>
+
+<p>首先了解一下什么是 <code class="highlighter-rouge">前向代理</code> 。代理 (Proxy) 也称网络代理，是一种特殊的网络服务，通俗来讲，就是在客户端和目标服务器之间的充当中间人，接收客户端的请求，再根据客户端请求向目标服务器发起相应的请求，从目标服务器获得指定资源后返回给客户端。且代理服务器可以对目标服务器的资源下载至本地缓存，如果客户端所要获取的资源在代理服务器的缓存之中，则代理服务器并不会再向目标服务器发起请求，而是直接返回缓存的资源。</p>
+
+<p>其实代理服务器非常常见，就比如因为 <code class="highlighter-rouge">GWF</code> 而存在的一些科学上网的代理商，就是利用国外服务器作为代理服务器，从而正确解析域名来实现科学上网。代理服务器也可以实现隐藏真实 IP，比如著名的 Tor （洋葱路由器）就是通过多重代理和一些加密技术来实现匿名交流。</p>
+
+<p>而 <code class="highlighter-rouge">反向代理</code> 则是在服务器端作为代理使用，而不是客户端。也就是说，<code class="highlighter-rouge">前向代理</code> 是代理内部网络用户访问 Internet 上服务器的连接请求，<code class="highlighter-rouge">反向代理</code> 是以代理服务器来接受 Internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 Internet 上请求连接的客户端，此时的代理服务器对外就表现为一个服务器。</p>
+
+<p><strong>负载均衡</strong></p>
+
+<p>反向代理负载均衡技术是把将来自 Internet 上的连接请求以反向代理的方式动态地转发给内部网络上的多台服务器进行处理，从而达到负载均衡的目的。</p>
+
+<p><strong>真巧， Nginx 都做到了</strong></p>
+
+<p>Nginx 作为一个优秀的代理服务器，反向代理和负载均衡必然是都具备的。想要更详细得了解这方面的知识和使用方法，可参见文末给出的参考资料： Nginx 入门指南。</p>
+
+<h4 id="nginx--1"><strong>Nginx 安装</strong></h4>
+
+<p>本人使用的是腾讯云的服务器，版本为：  Ubuntu Server 14.04.1 LTS 32 位。</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>apt-get install nginx
+</code></pre>
+</div>
+
+<p>Mac OS 系统参考这篇文章：<a href="http://learnaholic.me/2012/10/10/installing-nginx-in-mac-os-x-mountain-lion/">Installing Nginx in Mac OS X</a></p>
+
+<h4 id="nginx--2"><strong>Nginx 配置</strong></h4>
+
+<p>简单地配置 Nginx 的配置文件，以便在启动 Nginx 时去启用这些配置。而本文的重点也是于此。</p>
+
+<p>Nginx 的配置系统由一个主配置文件和其他一些辅助的配置文件构成。这些配置文件均是纯文本文件，一般地，我们只需要配置主配置文件就行了。例如在我的服务器上是在：<code class="highlighter-rouge">/etc/nginx/nginx.conf</code> 。</p>
+
+<p><strong>指令上下文</strong></p>
+
+<p>nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了分类，也就是分成了多个作用域，或者称之为配置指令上下文。不同的作用域含有一个或者多个配置项。</p>
+
+<p>其中每个配置项由配置指令和指令参数构成，形成一个键值对，<code class="highlighter-rouge">#</code> 后面地为注释，理解起来也非常容易。</p>
+
+<p>一般配置文件的结构和通用配置如下：</p>
+
+<div class="language-nginx highlighter-rouge"><pre class="highlight"><code><span class="k">user</span> <span class="s">www-data</span><span class="p">;</span>    <span class="c1"># 运行 nginx 的所属组和所有者
+</span><span class="k">worker_processes</span> <span class="mi">1</span><span class="p">;</span>    <span class="c1"># 开启一个 nginx 工作进程,一般 CPU 几核就写几
+</span><span class="k">pid</span> <span class="n">/run/nginx.pid</span><span class="p">;</span>    <span class="c1"># pid 路径
+</span>
+<span class="k">events</span> <span class="p">{</span>
+        <span class="kn">worker_connections</span> <span class="mi">768</span><span class="p">;</span>    <span class="c1"># 一个进程能同时处理 768 个请求
+</span>        <span class="c1"># multi_accept on;
+</span><span class="p">}</span>
+
+<span class="c1"># 与提供 http 服务相关的配置参数，一般默认配置就可以，主要配置在于 http 上下文里的 server 上下文
+</span><span class="k">http</span> <span class="p">{</span>
+        <span class="c1">##
+</span>        <span class="c1"># Basic Settings
+</span>        <span class="c1">##
+</span>
+        <span class="kn">...</span> <span class="s">此处省略通用默认配置</span>
+
+        <span class="c1">##
+</span>        <span class="c1"># Logging Settings
+</span>        <span class="c1">##
+</span>        <span class="s">...</span> <span class="s">此处省略通用默认配置</span>
+
+        <span class="c1">##
+</span>        <span class="c1"># Gzip Settings
+</span>        <span class="c1">##
+</span>
+        <span class="s">...</span> <span class="s">此处省略通用默认配置</span>
+
+        <span class="c1">##
+</span>        <span class="c1"># nginx-naxsi config
+</span>        <span class="c1">##
+</span>
+        <span class="s">...</span> <span class="s">此处省略通用默认配置</span>
+
+        <span class="c1">##
+</span>        <span class="c1"># nginx-passenger config
+</span>        <span class="c1">##
+</span>
+        <span class="s">...</span> <span class="s">此处省略通用默认配置</span>
+
+        <span class="c1">##
+</span>        <span class="c1"># Virtual Host Configs
+</span>        <span class="c1">##
+</span>
+        <span class="s">...</span> <span class="s">此处省略通用默认配置</span>
+
+        <span class="c1"># 此时，在此添加 server 上下文，开始配置一个域名，一个 server 配置段一般对应一个域名
+</span>        <span class="s">server</span> <span class="p">{</span>
+                <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>               <span class="c1"># 监听本机所有 ip 上的 80 端口
+</span>                <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>           <span class="c1"># 域名：www.example.com 这里 "_" 代表获取匹配所有
+</span>                <span class="kn">root</span> <span class="n">/home/filename/</span><span class="p">;</span>    <span class="c1"># 站点根目录
+</span>
+                <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>             <span class="c1"># 可有多个 location 用于配置路由地址
+</span>                        <span class="kn">try_files</span> <span class="s">index.html</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+                <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># 邮箱的配置，因为用不到，所以把这个 mail 上下文给注释掉
+#mail {
+#       # See sample authentication script at:
+#       # http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript
+#       
+#       # auth_http localhost/auth.php;
+#       # pop3_capabilities "TOP" "USER";
+#       # imap_capabilities "IMAP4rev1" "UIDPLUS";
+#     
+#       server {
+#               listen      localhost:110;
+#               protocol    pop3;
+#               proxy       on;
+#       }
+#
+#       server {
+#               listen      localhost:143;
+#               protocol    imap;
+#               proxy       on;
+#       }
+#}
+</span></code></pre>
+</div>
+
+<p>这里需要注意的是 http 上下文里的 server 上下文。</p>
+
+<div class="language-nginx highlighter-rouge"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>               <span class="c1"># 监听本机所有 ip 上的 80 端口
+</span>        <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>           <span class="c1"># 域名：www.example.com 这里 "_" 代表获取匹配所有
+</span>        <span class="kn">root</span> <span class="n">/home/filename/</span><span class="p">;</span>    <span class="c1"># 站点根目录
+</span>
+        <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>             <span class="c1"># 可有多个 location 用于配置路由地址
+</span>            <span class="kn">try_files</span> <span class="s">index.html</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这里的 root 字段最好写在 location 字段的外边，防止出现无法加载 css、js 的情况。因为 css、js 的加载并不是自动的，nginx 无法执行，需要额外的配置来返回资源，所以，对于静态页面的部署，这样做是最为方便的。</p>
+
+<p>这里对 root 作进一步解释，例如在服务器上有 /home/zhihu/ 目录，其下有 index.html 文件和 css/ 以及 img/ ， <code class="highlighter-rouge">root /home/zhihu/;</code> 就将指定服务器加载资源时是在 /home/zhihu/ 下查找。</p>
+
+<p>其次， location 后的匹配分多种，其各类匹配方式优先级也各不相同。这里列举一精确匹配例子：</p>
+
+<div class="language-nginx highlighter-rouge"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>               
+        <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>           
+        <span class="kn">root</span> <span class="n">/home/zhihu/</span><span class="p">;</span>    
+
+        <span class="kn">location</span> <span class="p">=</span> <span class="n">/zhihu</span> <span class="p">{</span>
+            <span class="kn">rewrite</span> <span class="s">^/.*</span> <span class="n">/</span> <span class="s">break</span><span class="p">;</span>
+            <span class="kn">try_files</span> <span class="s">index.html</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>此时，访问 www.example.com/zhihu 就会加载 zhihu.html 出来了。由于 location 的精确匹配，只有访问  www.example.com/zhihu 这个路由时才会正确响应，而且此时要通过 rewrite 正则匹配，把 /zhihu 解析替换成原来的 / 。关于更多 location 字段用法，可以在文章最后给出的参考资料中查看。</p>
+
+<p><strong>关于使用 nginx 部署静态页面，最简单便捷的配置方法</strong></p>
+
+<p>上面说了挺多关于配置的说明，下面推荐一种个人认为最为便捷的配置方法。（特此感谢 <a href="https://github.com/guyskk">guyskk</a> 学长的答疑解惑）</p>
+
+<p>首先创建一个目录，例如： <code class="highlighter-rouge">/home/ubuntu/website</code> 然后在这个 website 文件夹下可以放置你需要部署的静态页面文件，例如 website 下我有 google、zhihu、fenghuang 这三个文件夹，其中 server 字段配置如下：</p>
+
+<div class="language-nginx highlighter-rouge"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+        <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>
+        <span class="kn">root</span> <span class="n">/home/ubuntu/website</span><span class="p">;</span>
+        <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这里每个文件夹下面的静态页面文件名都是 index.html ，我以前有个很不好的习惯，比如 zhihu 页面就喜欢命名为 zhihu.html ，但就从前端来看，这也是不符合规范的。</p>
+
+<p>这样配置的话，例如当你访问 <a href="http://www.showzeng.cn/google/">www.showzeng.cn/google/</a> 时，nginx 就会去 website 目录下的 google 文件夹下寻找到 index.html 并把 google 页面返回，同理，访问 <a href="http://www.showzeng.cn/zhihu/">www.showzeng.cn/zhihu/</a> 时，会寻找到 zhihu 文件夹下的 index.html 并把 zhihu 页面返回。</p>
+
+<p>而在 zhihu、google 、fenghuang 文件夹的同级目录上，再添加你的域名首页 index.html 时，访问 www.example.com 时就会返回了。</p>
+
+<p>这里唯一美中不足的是，访问域名中 www.showzeng.cn/zhihu 末尾会自动加上 <code class="highlighter-rouge">/</code> ，在浏览器中按 F12 调试会发现 www.showzeng.cn/zhihu 为 301 状态码，因为 index.html 是在 zhihu/ 文件夹下，所以在搜索过程中会重定向到 www.showzeng.cn/zhihu/ ，起初我是接受不了的，那一 <code class="highlighter-rouge">/</code> 看起来太难受了，但是只要一想到要一个一个 location 字段去匹配，我一下子就接受了。不知道你怎么看，反正我是接受了。</p>
+
+<h4 id="nginx--3"><strong>Nginx 启动运行</strong></h4>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo nginx -s reload
+</code></pre>
+</div>
+
+<p>使用 reload 方法不用重启服务，直接重新加载配置文件，客户端感觉不到服务异常，实现平滑切换。当然你也可以重新启动 nginx 服务。</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo service nginx restart
+</code></pre>
+</div>
+<h4 id="nginx--4"><strong>Nginx 停止运行</strong></h4>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo nginx -s stop
+</code></pre>
+</div>
+
+<h4 id="section"><strong>参考资料</strong></h4>
+
+<p><a href="http://wiki.jikexueyuan.com/project/nginx/">Nginx 入门指南</a></p>
+
+<p><a href="http://carrot.is/coding/nginx_introduction">Nginx for Developers: An Introduction</a> <a href="https://fraserxu.me/2013/06/22/Nginx-for-developers/">（译文）</a></p>
+
+<p><a href="http://seanlook.com/2015/05/17/nginx-location-rewrite/">nginx 配置 location 总结及 rewrite 规则写法</a></p>
+
+            <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="/nginx/2016/10/03/use-nginx-to-deploy-static-pages-easily" data-title="使用 Nginx 部署静态页面" data-url="showzeng.github.io{page.url}"></div>
+            <!-- 多说评论框 end -->
+            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+            <script type="text/javascript">
+                var duoshuoQuery = {
+                    short_name: "showzeng"
+                };
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';
+                    ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] ||
+                        document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- 多说公共JS代码 end -->
+        </div>
+        <a href="" class="up-to-top" id="up-to-top" title="up to the top">
+            <img src="http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/fangxiang3.png" class="up-to-top-img" />
+        </a>
+    </div>
+
+    <div id="footer">
+    <p>&copy; 2016 showzeng</p>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    window.onscroll = function() {
+        console.log(document.body.scrollTop)
+        if (document.body.scrollTop >= window.innerHeight) {
+          // alert("You should show up");
+            document.getElementById('up-to-top').className = 'up-to-top fixed'
+        } else {
+            document.getElementById('up-to-top').className = 'up-to-top'
+        }
+    }
+
+    var hiddenProperty = 'hidden' in document ? 'hidden' :
+        'webkitHidden' in document ? 'webkitHidden' :
+        'mozHidden' in document ? 'mozHidden' :
+        null;
+    var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+    var onVisibilityChange = function() {
+        if (!document[hiddenProperty]) {
+            document.title = "ˇε ˇ 使用 Nginx 部署静态页面"
+        } else {
+            document.title = ":-( 不要离开我"
+        }
+    }
+    document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+</script>
+
+</html>

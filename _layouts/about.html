@@ -1,0 +1,63 @@
+<head>
+    <title>{{ page.title }}</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="showzeng's blog" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="showzeng" />
+    <meta name="copyright" content="showzeng" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" href="http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/atom.png" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/about.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+</head>
+
+<body>
+    <div id="container">
+      <div class="post-title">
+          <div class="inner-title">
+              <div class="post-title-back">
+                  <a href="/" class="home-link"><img src="http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/home2.png" class="home" /></a>
+              </div>
+              <div class="post-article-title">
+                  <p>{{ page.title }}</p>
+              </div>
+          </div>
+      </div>
+        <div id="header">
+            <div class="header-bg" id="header-bg"></div>
+            <a href="/"><img class="header-avatar" src="http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/avart.jpg"/></a>
+        </div>
+
+        <div id="content">
+          {{ content }}
+
+          <!-- 多说评论框 start -->
+          <div class="ds-thread" data-thread-key="showzeng.github.io-about.html" data-title="关于" data-url="showzeng.github.io/about.html"></div>
+          <!-- 多说评论框 end -->
+          <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+          <script type="text/javascript">
+              var duoshuoQuery = {
+                  short_name: "showzeng"
+              };
+              (function() {
+                  var ds = document.createElement('script');
+                  ds.type = 'text/javascript';
+                  ds.async = true;
+                  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                  ds.charset = 'UTF-8';
+                  (document.getElementsByTagName('head')[0] ||
+                      document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+          </script>
+          <!-- 多说公共JS代码 end -->
+        </div>
+    </div>
+
+    {% include footer.html %}
+</body>
