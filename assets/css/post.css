@@ -172,6 +172,10 @@ a {
   height: 50px;
 }
 
+.up-to-top.fixed img {
+  margin: 0;
+}
+
 .up-to-top:hover {
   bottom: 10.3%;
 }
@@ -330,6 +334,15 @@ td {
     width: 100%;
   }
 
+  #post-container {
+    width: auto;
+    font-size: 0.9em;
+    letter-spacing: 0;
+    margin: 0 0 0 0;
+    padding: 2% 5% 5% 5%;
+    width: 90%;
+  }
+
   .post-title {
     width: 100%;
     height: 50px;
@@ -359,5 +372,18 @@ td {
 
   .home-link:hover {
     margin-top: 8px;
+  }
+
+  .up-to-top {
+    right: 2%;
+  }
+
+  .up-to-top.fixed {
+    width: 25px;
+    height: 25px;
+  }
+
+  .up-to-top.fixed img {
+    margin: 0;
   }
 }

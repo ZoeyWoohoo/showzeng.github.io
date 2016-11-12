@@ -12,8 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style type="text/css">
-
+         .cnzz {
+           display: none;
+         }
     </style>
+
     <link rel="stylesheet" href="/assets/css/footer.css" type="text/css" />
     <link rel="stylesheet" href="/assets/css/post.css" type="text/css" />
     <link rel="stylesheet" href="/assets/css/syntax.css" type="text/css" />
@@ -63,32 +66,15 @@
     </div>
 
     {% include footer.html %}
+
+    <div class="cnzz">
+      <script type="text/javascript">
+          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+          document.write(unescape("%3Cspan id='cnzz_stat_icon_1260800361'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260800361%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
 </body>
 
-<script type="text/javascript">
-    window.onscroll = function() {
-        console.log(document.body.scrollTop)
-        if (document.body.scrollTop >= window.innerHeight) {
-          // alert("You should show up");
-            document.getElementById('up-to-top').className = 'up-to-top fixed'
-        } else {
-            document.getElementById('up-to-top').className = 'up-to-top'
-        }
-    }
-
-    var hiddenProperty = 'hidden' in document ? 'hidden' :
-        'webkitHidden' in document ? 'webkitHidden' :
-        'mozHidden' in document ? 'mozHidden' :
-        null;
-    var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-    var onVisibilityChange = function() {
-        if (!document[hiddenProperty]) {
-            document.title = "ˇε ˇ {{ page.title }}"
-        } else {
-            document.title = ":-( 不要离开我"
-        }
-    }
-    document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-</script>
+<script type="text/javascript" src="../assets/js/post.js"></script>
 
 </html>

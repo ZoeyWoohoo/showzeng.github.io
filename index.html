@@ -1,6 +1,4 @@
----
-title: showzeng's blog
----
+--- title: showzeng's blog ---
 
 <head>
     <title>showzeng's blog</title>
@@ -11,6 +9,12 @@ title: showzeng's blog
     <meta name="author" content="showzeng" />
     <meta name="copyright" content="showzeng" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style type="text/css">
+         .cnzz {
+           display: none;
+         }
+    </style>
 
     <link rel="shortcut icon" href="http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/avatar.png" type="image/x-icon" />
     <link rel="alternate" type="application/atom+xml" title="Atom" href="" />
@@ -26,15 +30,15 @@ title: showzeng's blog
         <div id="header">
             <div class="header-bg" id="header-bg"></div>
             <div class="nav-bar" id="nav-bar">
-                <div class="nav-bar-avatar" id="nav-bar-avatar" onmouseover="mouseOver()" onmouseout="mouseOut()" >
+                <div class="nav-bar-avatar" id="nav-bar-avatar" onmouseover="mouseOver()" onmouseout="mouseOut()">
                     <img class="avatar" id="avatar" src="http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/avart.jpg" alt="showzeng" />
                 </div>
                 <a href="/">
                     <p class="nav-bar-title" id="nav-bar-title">写代码的小超超</p>
                 </a>
                 <div class="other">
-                  <a href="/articles" class="nav-bar-item">归档</a>
-                  <a href="/about" class="nav-bar-item">关于</a>
+                    <a href="/articles" class="nav-bar-item">归档</a>
+                    <a href="/about" class="nav-bar-item">关于</a>
                 </div>
             </div>
         </div>
@@ -72,73 +76,23 @@ title: showzeng's blog
                 </div>
 
                 <div class="page">
-                    {% for page in (1..paginator.total_pages) %}
-                    {% if page == paginator.page %}
-                    <em class="page-num">{{ page }}</em>
-                    {% elsif page == 1 %}
-                    <a class="page-num" href="/">{{ page }}</a>
-                    {% else %}
-                    <a class="page-num" href="/blog/page{{ page }}">{{ page }}</a>
-                    {% endif %}
-                    {% endfor %}
+                    {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %}
+                    <em class="page-num">{{ page }}</em> {% elsif page == 1 %}
+                    <a class="page-num" href="/">{{ page }}</a> {% else %}
+                    <a class="page-num" href="/blog/page{{ page }}">{{ page }}</a> {% endif %} {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 
     {% include footer.html %}
+
+    <div class="cnzz">
+      <script type="text/javascript">
+          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+          document.write(unescape("%3Cspan id='cnzz_stat_icon_1260800361'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260800361%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+    </div>
 </body>
 
-<script type="text/javascript">
-
-    var transformHeight = document.getElementById('header-bg').offsetHeight - document.getElementById('nav-bar').offsetHeight;
-
-    window.onscroll = function() {
-        // console.log(document.body.scrollTop)
-        if (document.body.scrollTop >= transformHeight ) {
-            document.getElementById('nav-bar').className = 'nav-bar nav-bar-fixed'
-            document.getElementById('nav-bar-avatar').className = 'nav-bar-avatar small'
-            document.getElementById('nav-bar-title').className = 'nav-bar-title small'
-            document.getElementsByClassName('nav-bar-title')[0].innerHTML = 'showzeng'
-        } else {
-            document.getElementById('nav-bar').className = 'nav-bar'
-            document.getElementById('nav-bar-avatar').className = 'nav-bar-avatar'
-            document.getElementById('nav-bar-title').className = 'nav-bar-title'
-            document.getElementsByClassName('nav-bar-title')[0].innerHTML = '写代码的小超超'
-        }
-    }
-
-    function mouseOver(){
-      if (document.body.scrollTop >= transformHeight) {
-        document.getElementById('avatar').style.transform ="rotate(360deg)";
-        document.getElementById('avatar').style.transition ="0.5s linear";
-      }
-      else {
-        console.log(不要管我);
-      }
-    }
-
-    function mouseOut(){
-      if (document.body.scrollTop >= transformHeight) {
-        document.getElementById('avatar').style.transform ="rotate(-360deg)";
-        document.getElementById('avatar').style.transition ="0.5s linear";
-      }
-      else {
-        console.log(请无视我);
-      }
-    }
-
-    var hiddenProperty = 'hidden' in document ? 'hidden' :
-        'webkitHidden' in document ? 'webkitHidden' :
-        'mozHidden' in document ? 'mozHidden' :
-        null;
-    var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-    var onVisibilityChange = function() {
-        if (!document[hiddenProperty]) {
-            document.title = "ˇε ˇ showzeng's blog"
-        } else {
-            document.title = ":-( 不要离开我"
-        }
-    }
-    document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-</script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
