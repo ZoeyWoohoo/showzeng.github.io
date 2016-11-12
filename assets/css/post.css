@@ -346,6 +346,7 @@ td {
   .post-title {
     width: 100%;
     height: 50px;
+    position: absolute;
     margin: 0;
   }
 
