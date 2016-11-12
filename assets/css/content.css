@@ -103,6 +103,7 @@
 
 @media screen and (max-device-width: 768px) {
     .post-title {
+        width: 75%;
         font-size: 1.1em;
     }
     .post-date {
