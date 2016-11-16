@@ -78,6 +78,7 @@ Example example = gson.fromJson(exampleJsonString, Example.class);
 
 #### 1. 解析第一步：观
 要解析数据，第一步肯定就是观察数据啦！以下均以实际项目中的数据处理作为事例。在写图书馆功能模块时，调用后台所给的 API ，返回借阅信息的 json 数据如下：
+
 ``` json
 {
     "data": [
@@ -134,6 +135,7 @@ Example example = gson.fromJson(exampleJsonString, Example.class);
     "status": 1
 }
 ```
+
 在这里的 json 最外面是一个 {} ，里面有 `{ "data": "something", "message": "someting", "status": "something"}`，接着 data 里面是一个 [] ，里面包含着 `[ {"author": "something", "barCode": "something", "borrowDate": "something", "check": "something", "returnDate": "something", "title": "something"}, ***]`，而每一个 {} 里的键名和顺序都是一样的。
 
 #### 2. 解析第二步：构

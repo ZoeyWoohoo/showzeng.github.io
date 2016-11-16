@@ -3,7 +3,7 @@ layout: post
 title:  "(译)打造完美像素图标"
 date:   2016-10-22 14:26:29 +0800
 category: Design
-excerpt: 我开始制作完美像素图标。以下是一路探索所得。
+excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 ---
 
 > 本文为译文，原文链接： [点击进入原文](https://blog.ginetta.net/i-set-out-to-create-pixel-perfect-icons-heres-what-i-discovered-along-the-way-4e46378932df#.83n2lylog)
@@ -17,7 +17,7 @@ excerpt: 我开始制作完美像素图标。以下是一路探索所得。
 >- 作者：[showzeng](https://github.com/showzeng)
 >- 审阅者：[Zetaoyang](https://github.com/ZetaoYang)
 
-### **我开始制作完美像素图标。以下是一路探索所得。**
+### **我开始制作完美像素图标,以下是一路探索所得。**
 
 有些设计师对这种深入到像素的制作并不足够重视，其他人会认为它会魔性地从天而降，而只有极少数人接受这个挑战并切实地去创作。我个人深信不疑，图标是一个好的设计的非常重要的一环，因此，每个设计师都应该能够设计出一套图标系统，只要有热情、耐心和一些指导。
 

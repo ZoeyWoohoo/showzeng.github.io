@@ -223,6 +223,7 @@ $ sudo nginx -s reload
 ``` bash
 $ sudo service nginx restart
 ```
+
 #### **Nginx 停止运行**
 
 ``` bash
