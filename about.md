@@ -17,11 +17,11 @@ layout: about
 
 网络常用 ID： showzeng 。小伙伴们也叫我 **`小超超`**，如同这个头像一样，希望爆发自己的小宇宙，成为自己的 superman 。
 
-物联网工程在读学生，2019年毕业。学校偏硬件的环境下并未束缚住我对软件的喜爱。而有幸加入 [家园工作室](www.ncuhome.cn) ，从此打开新世界的大门。对前端、后台都有所涉猎，目前主要在学 Android，可能也期许着能和自己的专业挂点钩。
+物联网工程在读学生，2019年毕业。学校偏硬件的环境下并未束缚住我对软件的喜爱。而有幸加入 [家园工作室](http://www.ncuhome.cn) ，从此打开新世界的大门。对前端、后台都有所涉猎，目前主要在学 Android，可能也期许着能和自己的专业挂点钩。
 
 #### **友情链接**
 
-[itsCoder](http://www.itscoder.com/) 、[写代码的猴子](http://jaeger.itscoder.com/) 、 [allenwu](http://allenwu.itscoder.com/) 、[guyskk](http://www.kkblog.me/) 、[sujunfei](http://blog.sujunfei.cn)
+[itsCoder](http://www.itscoder.com/) 、[写代码的猴子](http://jaeger.itscoder.com/) 、 [allenwu](http://allenwu.itscoder.com/) 、[guyskk](http://www.kkblog.me/) 、[sujunfei](http://blog.sujunfei.cn) 、[zetaoyang](https://zetaoyang.github.io)
 
 #### **联系方式**
 
