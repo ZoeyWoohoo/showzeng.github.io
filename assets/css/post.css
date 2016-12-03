@@ -249,11 +249,11 @@ img {
 
 blockquote {
     margin: 16px 0px;
-    color: #454545;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-left: 4px solid #9c9c9c;
-    background: #e2e2e2;
+    color: #777;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border-left: 4px solid #999;
+    background: #e9e9e9;
 }
 
 blockquote p {
@@ -281,7 +281,7 @@ pre {
 
 pre code {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-    color: #e65c04;
+    color: #09acfe;
     letter-spacing: 0.025em;
     font-size: 85%;
 }
