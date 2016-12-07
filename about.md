@@ -21,7 +21,7 @@ layout: about
 
 #### **友情链接**
 
-[itsCoder](http://www.itscoder.com/) 、[写代码的猴子](http://jaeger.itscoder.com/) 、 [allenwu](http://allenwu.itscoder.com/) 、[guyskk](http://www.kkblog.me/) 、[sujunfei](http://blog.sujunfei.cn) 、[zetaoyang](https://zetaoyang.github.io)
+[itsCoder](http://www.itscoder.com/) 、[写代码的猴子](http://jaeger.itscoder.com/) 、 [allenwu](http://allenwu.itscoder.com/) 、[Manjusaka](http://manjusaka.itscoder.com/)、[Brucezz's Corner](http://brucezz.itscoder.com/)、[guyskk](http://www.kkblog.me/) 、[sujunfei](http://blog.sujunfei.cn) 、[zetaoyang](https://zetaoyang.github.io)
 
 #### **联系方式**
 
