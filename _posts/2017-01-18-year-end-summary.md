@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Goodbye 2016!"
+title:  "Fuck off 2016!"
 date:   2017-01-28 00:00:00 +0800
 category: Essay
 excerpt: 今晚过了十二点肯定有一群傻屌在那说什么新的一年新的开始，呵呵，还新的开始，2017 年你还是这屌样，洗洗睡吧！
