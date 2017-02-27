@@ -111,6 +111,13 @@ a {
     -webkit-margin-end: 0px;
 }
 
+.post-content img {
+  max-width: 92%;
+  display: block;
+  border: 10px solid #fff;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+}
+
 .category-item {
     color: #555555;
     width: 100%;
@@ -158,6 +165,37 @@ a {
     display: inline-block;
 }
 
+/*#up-to-top {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  z-index: 7;
+  display: block;
+  width: 26px;
+  height: 48px;
+  background: url(http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/fangxiang3.png) 50% 0 no-repeat;
+  transition: visibility .6s cubic-bezier(.6,.04,.98,.335),opacity .6s cubic-bezier(.6,.04,.98,.335),transform .6s cubic-bezier(.6,.04,.98,.335)
+}
+
+#up-to-top i {
+  display: block;
+  margin-top: 48px;
+  height: 14px;
+  background: url(http://7xtt0k.com1.z0.glb.clouddn.com/image/myblog/fangxiang3.png) 50% -48px no-repeat;
+  opacity: .5;
+  transition: transform .2s;
+  transform-origin: 50% 0;
+}
+
+#up-to-top::after {
+  visibility: hidden;
+}
+
+#up-to-top.up-to-top {
+  visibility: visible;
+  opacity: 1;
+}*/
+
 .up-to-top {
   display: block;
   position: fixed;
@@ -186,11 +224,12 @@ a {
 }
 
 H2 {
+    margin-top: 30px;
     margin-bottom: 30px;
-    padding: 5px;
+    padding-bottom: 10px;
     border-bottom: 2px LightGrey solid;
     width: 100%;
-    font-size: 1.5em;
+    font-size: 2em;
     line-height: 120%;
     color: #666666;
 }
@@ -198,13 +237,13 @@ H2 {
 H3 {
     margin: 24px 0 12px;
     font-size: 1.5em;
-    border-left: 6px solid #3d4b55;
+    /*border-left: 6px solid #3d4b55;*/
     /*border-bottom: 4px double #3d4b55;*/
-    padding-left: 0.5em;
+    /*padding-left: 0.5em;*/
     padding-bottom: 0.5em;
     padding-top: 0.5em;
-    background: #efefef;
-    color: #3d4b55;
+    /*background: #efefef;*/
+    color: #666666;
     line-height: 1.5;
 }
 
@@ -234,17 +273,18 @@ li {
 a {
     text-decoration: none;
     padding: 1px;
-    color: #228fcd;
+    color: #428bca;
 }
 
 a:hover {
-    color: gray;
+    color: #2a6496;
+    text-decoration: underline;
 }
 
 img {
     max-width: 100%;
     display: block;
-    margin: 10px auto;
+    margin: 33px auto;
 }
 
 blockquote {
@@ -357,12 +397,22 @@ td {
   .post-article-title {
     height: 50px;
     line-height: 50px;
+    overflow: hidden;
   }
 
   .post-content {
     width: 90%;
     padding: 0;
     margin: 50px 0 0 5%;
+  }
+
+  .post-content p {
+      -webkit-margin-before: 0.5em;
+      -webkit-margin-after: 0.5em;
+  }
+
+  .post-content img {
+    max-width: 88%;
   }
 
   .home-link {

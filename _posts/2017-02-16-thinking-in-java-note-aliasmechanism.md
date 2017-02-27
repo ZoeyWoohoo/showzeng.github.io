@@ -6,6 +6,8 @@ category: Java
 excerpt: 由赋值引起的别名现象：对于基本数据类型的赋值，存储的是实际的数值，将内容复制给了另一方。而对于对象的赋值则是操作的对象的引用。
 ---
 
+> 导语：《Thinking in Java》系列笔记，因为在此前的学习过程中，一些比较细的知识点没有梳理和记忆，容易忘记，所以在看完《疯狂 Java 讲义》后，决定在读这本书的过程中，将自己觉得重要或者是自己平时并不关注的细节给记录下来。同时，也可以查看我读书所做的[思维导图](http://naotu.baidu.com/file/c2d3c32533ee65a57ea46aecf4dce3cc?token=974de6a59ff1a15c)（读完之前持续更新）。
+
 ### 赋值
 
 对于基本数据类型的赋值，存储的是实际的数值，将内容复制给了另一方。而对于对象的赋值则是操作的对象的引用。
@@ -53,7 +55,7 @@ public class HelloWorld {
 
 ![aliasMechanismResult](http://7xtt0k.com1.z0.glb.clouddn.com/ThinkingInJava/aliasMechanismResult.png)
 
-> **方法调用中的别名问题**
+#### **方法调用中的别名问题**
 
 同样的，在将一个对象作为参数传递给方法时，也会产生别名问题。
 
@@ -82,4 +84,4 @@ public class AliasMechanism {
 
 ![aliasMechanismFunctionResult](http://7xtt0k.com1.z0.glb.clouddn.com/ThinkingInJava/aliasMechanismFunctionResult.png)
 
-在 `f(x);` 这一步时其实相当于执行了 `y = x;` ,所以，当方法 f 结束后，其 x.c 的值也已经改变了。
+在 **f(x);** 这一步时其实相当于执行了 **y = x;** ,所以，当方法 **f()** 结束后，其 **x.c** 的值也已经改变了。

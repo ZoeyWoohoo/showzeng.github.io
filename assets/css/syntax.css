@@ -1,7 +1,7 @@
 .highlight  { background: #2F2F2F; border-radius: 3px;padding: 10px;}
 
 .c { color: #75715e } /* Comment */
-.err { color: #960050; background-color: #1e0010 } /* Error */
+.err { color: #d80676} /* Error */
 .k { color: #ebcb78} /* Keyword */
 .l { color: #ae81ff } /* Literal */
 .n { color: #09b1cc } /* Name */
