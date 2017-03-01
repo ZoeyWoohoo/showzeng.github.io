@@ -129,7 +129,7 @@
   .nav-bar-title, .nav-bar-item {
     position: static;
     line-height: 45px;
-    font-size: 1em;
+    font-size: 0.9em;
   }
 
   .nav-bar.nav-bar-fixed {
@@ -143,12 +143,12 @@
   }
 
   .other {
-    margin-left: 35px;
+    margin-left: 29px;
   }
 
   .nav-bar-item {
     float: none;
-    padding-right: 13px;
+    padding-right: 4px;
   }
 
   .nav-bar-avatar.small img {
