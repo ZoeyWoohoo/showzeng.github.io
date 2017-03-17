@@ -6,6 +6,11 @@ category: Java
 excerpt: 组合与继承是 Java 中重要的两种代码重用机制，与之引申出多态，这个在面向对象的程序设计语言中，继数据抽象和继承之后的第三种基本特征。
 ---
 
+>- 文章来源：itsCoder 的 [WeeklyBolg](https://github.com/itsCoder/weeklyblog) 项目
+>- itsCoder主页：[http://itscoder.com/](http://itscoder.com/)
+>- 作者：[showzeng](https://github.com/showzeng)
+>- 审阅者：[Zetaoyang](https://github.com/ZetaoYang)
+
 > 导语：《Thinking in Java》系列笔记，因为在此前的学习过程中，一些比较细的知识点没有梳理和记忆，容易忘记，所以在看完《疯狂 Java 讲义》后，决定在读这本书的过程中，将自己觉得重要或者是自己平时并不关注的细节给记录下来。同时，也可以查看我读书所做的[思维导图](http://naotu.baidu.com/file/c2d3c32533ee65a57ea46aecf4dce3cc?token=974de6a59ff1a15c)（读完之前持续更新）。当你读到这篇文章时，我的进度是这样的：
 
 ![Thinking in Java MindMap](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.9/ThinkingInJavaMindMap.png)
