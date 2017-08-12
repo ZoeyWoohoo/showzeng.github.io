@@ -229,7 +229,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 </resources>
 ```
 
-### MainActivity 逻辑代码
+### 4. MainActivity 逻辑代码
 
 此时只需要为评论条添加监听器，响应 DialogFragment 的呼出即可：
 
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 此时，运行程序，大体上是没问题了，接下来就需要实现它的一些小 Feature，一个是评论文本内容填充，一个是评论框文本输入监听，控制评论提交按钮的状态。
 
-### 评论文本内容填充
+### 5. 评论文本内容填充
 
 这里第一反应可能是普通 Activity 与 Fragment 间的通信，之后在网上看文章时，学习到回调这种用法，也是第一次比较深入地去理解回调这门艺术，不得不说，回调真是个好东西。接下来我们就来看看怎么用回调来实现这一个 Feature。
 
@@ -415,7 +415,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 }
 ```
 
-### 评论框文本输入监听，控制评论提交按钮的状态
+### 6. 评论框文本输入监听，控制评论提交按钮的状态
 
 这个算是本文比较有趣的一部分，也是自己在实现这个项目效果中碰到坑最多的地方了，让我细细说来。首先是 EditText 的输入监听，使用的是 TextWatcher，当输入的文本字符大于 0 时，将 sendButton 禁用，设置颜色为灰色。
 
@@ -562,7 +562,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 }
 ```
 
-### 在弹出评论框时呼出软键盘
+### 7. 在弹出评论框时呼出软键盘
 
 关于软键盘的呼出问题，也是一个比较头疼的问题，自己也碰到了比较多坑，网上的解决方案比较多，也比较多没有用 :) 。文末有推荐几篇比较优秀的文章可供参考。
 
