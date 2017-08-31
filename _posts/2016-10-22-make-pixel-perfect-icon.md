@@ -29,7 +29,7 @@ excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 
 开始你图标设计之旅的第一步就是正确合适地配置好你的文件。这有助你于一开始就精确而有序。
 
-![From left to right: Illustrator, Sketch and Affinity Designer.](http://7xtt0k.com1.z0.glb.clouddn.com/icon-tools.png)
+![From left to right: Illustrator, Sketch and Affinity Designer.](https://www.z4a.net/images/2017/08/31/icon_tools.png)
 
 绘制你的图标，会有不同的软件可供选择。最著名的几个当属 Adobe Illustrator、Sketch 和 Affinity Designer 了。我更偏爱于 AI，因为它提供了最简单有效的很多绘制工具（画笔工具、路径查找器、...），而这些都是在我绘制图标时对我最为重要的。[Scott Lewis](http://iconutopia.com/interview-scott-lewis-iconfinder/)，开发者 & Iconfinder 的内容负责人，曾在他的文章中比较过这三种软件。[Can Sketch or Affinity designer replace Adobe Illustrator?](Sketch 或者 Affinity designer 能够取代 Adobe Illustrator 吗？)：
 
@@ -49,7 +49,7 @@ excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 
 - 你的高级设置应该会和下面的截图看起来相似。
 
-![Creating a new document pop-up window.](http://7xtt0k.com1.z0.glb.clouddn.com/advanced-setting.png)
+![Creating a new document pop-up window.](https://www.z4a.net/images/2017/08/31/advanced_setting.png)
 
 **通用配置**
 
@@ -59,11 +59,11 @@ excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 
 - 在 General（常规）选项中，将键盘增量设为 1 px。这样，当你移动你的图标时，它们将留在像素网格中。
 
-![General settings pop-up window](http://7xtt0k.com1.z0.glb.clouddn.com/General-setting.png)
+![General settings pop-up window](https://www.z4a.net/images/2017/08/31/general_setting.png)
 
 - 转到 Units（单位）选项卡，将 General（常规）和 Stroke（描边值）设为 Pixels（像素）。如果你愿意，你也可以将字体设为像素（这貌似非常没有必要，除非你真的打算在你的图标中使用字体）。
 
-![Preferences pop-up window](http://7xtt0k.com1.z0.glb.clouddn.com/units-setting.png)
+![Preferences pop-up window](https://www.z4a.net/images/2017/08/31/units_setting.png)
 
 ### **第二部分：提示和技巧**
 
@@ -83,7 +83,7 @@ excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 
 转换框（ Window（窗口） > Transform（变换）或者使用 shift + F8 快捷键）可以帮助你追踪那些意外的小数值。如果有，你可以立即输入最为接近的整数值来修正它。
 
-![Screenshot of how your transform box should look like](http://7xtt0k.com1.z0.glb.clouddn.com/transform-box.png)
+![Screenshot of how your transform box should look like](https://www.z4a.net/images/2017/08/31/transform_box.png)
 
 #### **技巧**
 
@@ -115,7 +115,7 @@ excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 
 图标网格是一组规则，它定义了你构建的图标集的结构。这有助于保持你图标集的一致性。
 
-![IOS 9 icon grid](http://7xtt0k.com1.z0.glb.clouddn.com/ios9-icon-grid.png)
+![IOS 9 icon grid](https://www.z4a.net/images/2017/08/31/ios9_icon_grid.png)
 参见 [IOS 9 设计指南](https://designcode.io/iosdesign-guidelines)
 
 #### **何时又如何使用图标网格？**
@@ -148,7 +148,7 @@ excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 
 4. 选择你的画板（快捷键 shift + O），分别进入每个画板，并根据里面的图标去重命名它。
 
-![Screenshot of how your icons should look like before you export them.](http://7xtt0k.com1.z0.glb.clouddn.com/icon-before-export.png)
+![Screenshot of how your icons should look like before you export them.](https://www.z4a.net/images/2017/08/31/icon_before_export.png)
 
 #### **保存**
 
@@ -160,7 +160,7 @@ excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 
 4. 最后，每个图标的文件名里都会有一个烦人的 “1-”。要删除它，右键单击这些图标，然后选择重命名所有，把 “1-” 替换为空字段。
 
-![Screenshot of how your saving settings should look like before you export your icons.](http://7xtt0k.com1.z0.glb.clouddn.com/export-icon.png)
+![Screenshot of how your saving settings should look like before you export your icons.](https://www.z4a.net/images/2017/08/31/export_icon.png)
 
 #### **优化**
 
@@ -168,7 +168,7 @@ excerpt: 我开始制作完美像素图标,以下是一路探索所得。
 
 这个在线工具 [svgomg](https://jakearchibald.github.io/svgomg/) 可以帮助你整理你的代码。只要拖动图标到上面并再次下载就可以了！你可以很直观的感受到它简化图标的代码是有多快，同时也将其文件大小减少至少 50%！
 
-![Icon code before(left) and after(right) optimization.](http://7xtt0k.com1.z0.glb.clouddn.com/optimization-icon.png)
+![Icon code before(left) and after(right) optimization.](https://www.z4a.net/images/2017/08/31/optimization_icon.png)
 
 **如何生成所有尺寸的 PNG？**
 
@@ -204,27 +204,27 @@ IcoMoon 是一个 web 应用，你无需用户账号也可以使用它。但是�
 
 当所有图标都已导入进去，你就可以使用顶部的工具栏去编辑或者移除它们了。
 
-![Toolbar of IcoMoon before you generate your iconfont.](http://7xtt0k.com1.z0.glb.clouddn.com/toolbar-before-generate-iconfont.png)
+![Toolbar of IcoMoon before you generate your iconfont.](https://www.z4a.net/images/2017/08/31/toolbar_before_generate_iconfont.png)
 
 在编辑图标时，你可以加上一些标签以便可以在 IcoMon 或者 一个 HTML 图标浏览器中去搜索图标。
 
-![Edit mode of an icon.](http://7xtt0k.com1.z0.glb.clouddn.com/edit-icon.png)
+![Edit mode of an icon.](https://www.z4a.net/images/2017/08/31/edit_icon.png)
 
 **生成**
 
 在生成字体时，你会在生成面板中看到所有选中的图标带有各自的标签，名称和连字。
 
-![Display of generated icons.](http://7xtt0k.com1.z0.glb.clouddn.com/display-of-generate-icon.png)
+![Display of generated icons.](https://www.z4a.net/images/2017/08/31/display_of_generate_icon.png)
 
 确保你的连字选项卡是开着的，因为它们是使用图标字体最快的方式，并允许你输入 “edit” 或 “account_circle” 来自动替换相应的图标（字形）。
 
-![Toolbar of IcoMoon after you generate your iconfont.](http://7xtt0k.com1.z0.glb.clouddn.com/toolbar-after-generate-iconfont.png)
+![Toolbar of IcoMoon after you generate your iconfont.](https://www.z4a.net/images/2017/08/31/toolbar_after_generate_iconfont.png)
 
 **下载**
 
 在下载完图标字体之后，你会在下载文件夹下发现几个不同的文件：
 
-![Example of a downloaded folder.](http://7xtt0k.com1.z0.glb.clouddn.com/example-of-download-folder.png)
+![Example of a downloaded folder.](https://www.z4a.net/images/2017/08/31/example_of_download_folder.png)
 
 - `fonts/`，包含其他格式的字体以在不同的 web 浏览器上使用。
 

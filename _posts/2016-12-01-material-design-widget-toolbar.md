@@ -53,7 +53,7 @@ compile 'com.android.support:appcompat-v7:25.0.1'
 
 或者你可以更方便地使用 Ctrl + Shift + Alt + s 快捷键，调出 **Project Structure** 界面，选择 Modules 下 app 的 Dependencies 选项，点击 + 号，选择添加一个 Library dependency，搜索添加即可，如下所示：
 
-![Add dependencies](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.7/add-dependencies.png)
+![Add dependencies](https://www.z4a.net/images/2017/08/31/add_dependencies.png)
 
 2.确保每个使用 Toolbar 作为应用栏的 Activity 都可以扩展 AppCompatActivity：
 
@@ -89,7 +89,7 @@ public class MyActivity extends AppCompatActivity {
 
 现在的 activity_main 布局就是这个样子了：
 
-![No ActionBar layout](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.7/NoActionBarLayout.png)
+![No ActionBar layout](https://www.z4a.net/images/2017/08/31/NoActionBarLayout.md.png)
 
 4.接下来就是在布局中引入 Toolbar，首先在根布局中 **添加 Toolbar 的自定义属性命名空间** `xmlns:toolbar="http://schemas.android.com/apk/res-auto"` 。添加自定义属性命名空间是为了能够引用 Toolbar 为我们提供的那些自定义属性。关于这一点可以参照 “[医生](http://blog.csdn.net/eclipsexys)” 《Android 群英传》第三章 “Android 控件架构与自定义控件详解”：
 
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
 预览效果：
 
-![Add Toolbar widget](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.7/ToolbarLayout.png)
+![Add Toolbar widget](https://www.z4a.net/images/2017/08/31/ToolbarLayout.md.png)
 
 关于这里的高度值 `？attr/actionBarSize` ，按住 Ctrl 键跳进去看就可以知道是一个 values.xml 资源文件中指定的一个值，这里就是原本 ActionBar 控件的高度。对于 Toolbar 常用的属性，在文章开头说到有：导航按钮、Logo、标题和副标题、一个或多个自定义视图、活动菜单。下面我们来将其一一实现。
 
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
 - 一或多个自定义视图：直接在 Toolbar 控件中插入想要的子控件即可。
 
-![Toolbar](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.7/toolbar.png)
+![Toolbar](https://www.z4a.net/images/2017/08/31/toolbar.png)
 
 从这里可以看出 NavigationIcon 和 Logo 的间距是不一样的，如果单独设置二者，可以对比出 NavigationIcon 离 title 和 subtitle 的间隔更大，比 Logo 显得优雅一些，当然你可以通过设置 title 的 margin 值来实现同样的效果。此状态下对应的 activity_main.xml 如下：
 
@@ -334,9 +334,9 @@ public class MainActivity extends AppCompatActivity {
 
 此时的操作栏如下图所示：
 
-![Full Toolbar](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.7/full_toolbar.jpg)
+![Full Toolbar](https://www.z4a.net/images/2017/08/31/full_toolbar.md.jpg)
 
-![Overflow Menu](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.7/overflow_menu.jpg)
+![Overflow Menu](https://www.z4a.net/images/2017/08/31/overflow_menu.md.jpg)
 
 我们会注意到溢出菜单默认显示黑色，明显不搭。关于这一点，可参考 [Android：改变 Toolbar 的文字和溢出图标颜色](http://blog.csdn.net/zhyh1986/article/details/51790570) 这篇文章。因为在 style 文件里给应用使用的是浅色主题，因此默认的标题和溢出菜单图标颜色都是黑色，Material Design 中也推荐这样的搭配使用，如果强行要改的话，就看前面给出的链接，这里就不费时间了。
 

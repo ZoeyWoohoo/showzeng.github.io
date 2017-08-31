@@ -13,7 +13,7 @@ excerpt: 组合与继承是 Java 中重要的两种代码重用机制，与之�
 
 > 导语：《Thinking in Java》系列笔记，因为在此前的学习过程中，一些比较细的知识点没有梳理和记忆，容易忘记，所以在看完《疯狂 Java 讲义》后，决定在读这本书的过程中，将自己觉得重要或者是自己平时并不关注的细节给记录下来。同时，也可以查看我读书所做的[思维导图](http://naotu.baidu.com/file/c2d3c32533ee65a57ea46aecf4dce3cc?token=974de6a59ff1a15c)（读完之前持续更新）。当你读到这篇文章时，我的进度是这样的：
 
-![Thinking in Java MindMap](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.9/ThinkingInJavaMindMap.png)
+![Thinking in Java MindMap](https://www.z4a.net/images/2017/08/31/ThinkingInJavaMindMap.png)
 
 我们知道，类是一种高度抽象的类型结构体，用以表示除去基本类型无法表述的那些复杂类型。在 C++ 中，类的数据成员甚至不能进行初始化赋值，因为类是一种抽象数据类型，并不占存储空间，所以所赋的值并不能被存储。
 
@@ -210,7 +210,7 @@ public class Sandwich extends PortableLunch {
 
 运行结果如下：
 
-![initialization](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.9/initialization.png)
+![initialization](https://www.z4a.net/images/2017/08/31/initialization.png)
 
 #### 初始化的实际过程
 
@@ -259,7 +259,7 @@ public class PolyConstructors {
 }
 ```
 
-![PolyConstructors](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.9/PolyConstructors.png)
+![PolyConstructors](https://www.z4a.net/images/2017/08/31/PolyConstructors.png)
 
 这里是因为子类覆盖了基类的 **draw()** 方法，如果去掉子类的 **draw()** 方法，那么 **Glyph** 构造器里调用的就是基类自身的 **draw()** 方法了。
 

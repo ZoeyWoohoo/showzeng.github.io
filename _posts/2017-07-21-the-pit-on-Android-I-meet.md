@@ -138,11 +138,11 @@ java.lang.IllegalArgumentException: You cannot start a load for a destroyed acti
 
 在写一个话题页面的时候，对于评论的 RecyclerView 中评论者头像的加载，用的是 Glide 这个库，造成应用 Crash 的原因，log 中也说的很清楚了，因为加载时的网络请求需要一定的时间，我在还未完成加载的瞬间按下了返回键 ( 说来也是巧，我在调试的时候，在进入新页面的瞬间立刻按下返回键才触发了这个隐藏的 bug )，Activity 已经销毁，然后就 Boom 了。
 
-![哦豁.jpg](http://7xtt0k.com1.z0.glb.clouddn.com/emoticon/ohuo.jpg)
+![哦豁.jpg](https://www.z4a.net/images/2017/08/31/ohuo.md.jpg)
 
 这算是一个比较有趣的问题，对应 github 上的 [803 issue](https://github.com/bumptech/glide/issues/803) 。很多开发者问为什么这种小事不直接 log 警告，却给劳资 crash 掉了，作为一条优秀的裤子，这种情况就应由 Glide 内部处理，而不是让我们操碎了心。然后你可以看到一个 Glide 的 issue 守护者给出了自己的见解 ( 为啥叫他 issue 守护者，因为他并不是 Glide 的核心开发者，人家只是觉得有趣，主动来回复 Glide 的 issue，并借此让自己的头脑得到锻炼，你可以在各大 issue 上看到他活跃的身影 ) 。
 
-![肃然起敬.jpg](http://7xtt0k.com1.z0.glb.clouddn.com/emoticon/suranqijing.jpg)
+![肃然起敬.jpg](https://www.z4a.net/images/2017/08/31/suranqijing.md.jpg)
 
 好了，回归正题，这个原因的主要问题是，你的 Activity 已经销毁，视图已经不可见，这时候却还让它进行网络请求并填充视图，是极其不合理也是不应该的，为此，Glide 将其从底层提升至交由开发者处理，并直接将程序 crash 掉，以此提醒开发者去处理这个问题，而不是简单的一个 log ( 多少人是只要程序不崩溃，不出问题就万事大吉 )，这样会留下很多潜在的 bug 隐患。
 

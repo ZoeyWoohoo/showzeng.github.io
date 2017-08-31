@@ -46,10 +46,10 @@ Gson（又称 Google Gson）是 Google 公司发布的一个开放源代码的 J
 
 #### 2. Gson 在 Android Studio 中的引入
 首先是 Gson 的引入，在 Android Studio 界面按下 Ctrl + Shift + Alt + s 快捷键，调出 Project Structure 界面，选择 Modules 下 app 的 Dependencies 选项，点击 `+` 号，选择添加一个 Library dependency 。
-![Project Structure](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.3/Project-Structure-screen-shot.png)
+![Project Structure](https://www.z4a.net/images/2017/08/31/project_structure_screen_shot.png)
 
 然后搜索所需要的第三方库即可，这里我们需要的是 gson，输入 com.google.code.gson:gson 就会看到有相应的结果显示出来了，我们直接添加导入即可。
-![Choose Library Dependency](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.3/Choose-Library-Dependency-screen-shot.png)
+![Choose Library Dependency](https://www.z4a.net/images/2017/08/31/choose_library_dependency_screen_shot.png)
 
 当然，你也可以使用 build.gradle 或者下载并引入相应的 jar 包，这里就不再赘余了，而且也没有这方法来的快。
 

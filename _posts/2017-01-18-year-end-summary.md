@@ -6,7 +6,7 @@ category: Essay
 excerpt: 今晚过了十二点肯定有一群傻屌在那说什么新的一年新的开始，呵呵，还新的开始，2017 年你还是这屌样，洗洗睡吧！
 ---
 
-![It's a new year and a new beginning!](http://7xtt0k.com1.z0.glb.clouddn.com/weeklyBlog/NO.9/newBeginning.jpg)
+![It's a new year and a new beginning!](https://www.z4a.net/images/2017/08/31/newBeginning.jpg)
 
 看到这个表情包的时候，除了调侃，还有些许心酸。太多时候，我们喜欢用 “新的XX” 作为一个旧仪式的告别，以此开启一个新的阶段。也就是去年，知道自己有许多需要改变的地方，于是乎，和自己说等过年的时候再一改陋习吧！其实都知道这是用来欺骗自己的借口不是吗？
 

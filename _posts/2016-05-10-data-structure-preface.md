@@ -13,7 +13,7 @@ tags:
 
 首先要清楚的是，在计算机中，并不存在内容的删除，只有内容的覆盖，这也是为什么会有数据恢复这种技术了！
 
-![空闲区与占用区](http://7xtt0k.com1.z0.glb.clouddn.com/data.png)
+![空闲区与占用区](https://www.z4a.net/images/2017/08/31/data.png)
 
 比如说你在word里编辑你的文件，假如你输入了三个字符，你删除之后，你认为就安全了吗？别人不可能恢复了吗？这样做还是不能销毁你的记录，只有通过更大的内容去覆盖你之前的内容，这样，之前的内容才会被“销毁”。尼玛，真有趣！
 
@@ -56,7 +56,7 @@ int a[9];
 ```
 一个整型占两个字节，这里系统会为这个数组申请18个字节的空间：
 
-![数组存储](http://7xtt0k.com1.z0.glb.clouddn.com/%E6%95%B0%E7%BB%84%E5%AD%98%E5%82%A8.png)
+![数组存储](https://www.z4a.net/images/2017/08/31/array_storage.png)
 
 而a就是首地址，即：
 
@@ -70,7 +70,7 @@ int a[9];
 int b[5][5];
 ```
 
-![二维数组存储](http://7xtt0k.com1.z0.glb.clouddn.com/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%AD%98%E5%82%A8.png)
+![二维数组存储](https://www.z4a.net/images/2017/08/31/two_dimensional_array_storage.png)
 
 除b[?][?]表示是具体的数值外，其它表示全为地址
 

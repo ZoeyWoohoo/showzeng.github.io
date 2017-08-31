@@ -53,7 +53,7 @@ public class HelloWorld {
 
 其输出结果如下：
 
-![aliasMechanismResult](http://7xtt0k.com1.z0.glb.clouddn.com/ThinkingInJava/aliasMechanismResult.png)
+![aliasMechanismResult](https://www.z4a.net/images/2017/08/31/aliasMechanismResult.png)
 
 #### **方法调用中的别名问题**
 
@@ -82,6 +82,6 @@ public class AliasMechanism {
 
 其输出结果如下：
 
-![aliasMechanismFunctionResult](http://7xtt0k.com1.z0.glb.clouddn.com/ThinkingInJava/aliasMechanismFunctionResult.png)
+![aliasMechanismFunctionResult](https://www.z4a.net/images/2017/08/31/aliasMechanismFunctionResult.png)
 
 在 **f(x);** 这一步时其实相当于执行了 **y = x;** ,所以，当方法 **f()** 结束后，其 **x.c** 的值也已经改变了。

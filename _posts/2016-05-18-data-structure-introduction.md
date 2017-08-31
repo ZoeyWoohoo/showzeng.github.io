@@ -35,11 +35,11 @@ __数据结构__
 
 （4）图形结构。结构中的数据元素之间存在多对多的关系。特征是：任何一个元素可以有多个前驱，也可以有多个后继，是一种多对多的前驱后继关系。也称网状结构。
 
-![四类基本类型](http://7xtt0k.com1.z0.glb.clouddn.com/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg)
+![四类基本类型](https://www.z4a.net/images/2017/08/31/basic_structure.jpg)
 
 > 数据结构包括以下三方面内容：数据的逻辑结构、存储结构和数据运算。
 
-![数据结构三方面内容](http://7xtt0k.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E5%9B%BE.jpg)
+![数据结构三方面内容](https://www.z4a.net/images/2017/08/31/data_structure_diagram.jpg)
 
 __逻辑结构__
 
@@ -53,7 +53,7 @@ R = {<1, 2>, <1, 3>, <3, 4>, <3, 5>}
 ```
 
 其对应树形逻辑结构图：
-![例树形结构图](http://7xtt0k.com1.z0.glb.clouddn.com/%E4%BE%8B%E5%AD%90%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E5%9B%BE.jpg)
+![例树形结构图](https://www.z4a.net/images/2017/08/31/tree_structure_diagram.jpg)
 
 __存储结构__
 
@@ -83,7 +83,7 @@ __算法__
 
 算法是对问题求解过程的一种描述，是为解决一个或一类问题给出的一个确定的、有限长的操作序列。
 
-![算法](http://7xtt0k.com1.z0.glb.clouddn.com/%E7%AE%97%E6%B3%95%E5%AF%BC%E5%9B%BE.jpg)
+![算法](https://www.z4a.net/images/2017/08/31/algorithm_diagram.jpg)
 
 - 算法具有以下五个特性：
 
