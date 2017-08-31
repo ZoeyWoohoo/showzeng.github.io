@@ -570,11 +570,11 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 
 高中毕业，买了第一部手机，Meizu MX4，今天我才发现真的是买对了。且不说 Flyme 基于 bug，就 MX4 这款变态的占屏比，真可谓是 Android 开发人员必备的调试机。
 
-![haixiu.jpg](http://7xtt0k.com1.z0.glb.clouddn.com/emoticon/haixiu.jpg)
+![haixiu.jpg](https://www.z4a.net/images/2017/08/31/haixiu.md.jpg)
 
 第一个要提出的点是：在填充评论条文本内容到评论框后，需要调用 EditText 的 setSelection 方法设置光标位置，不然魅族默认没有光标，也不会有软键盘弹出，我不知道是不是只有我的手机会这样，反正用另一部华为手机就没有这个问题。( 这里有点奇怪的是，为什么国际微博评论框弹出时，光标是置于文本头的，感觉这里很不人性化 )
 
-![buxing.jpg](http://7xtt0k.com1.z0.glb.clouddn.com/emoticon/buxing.jpg)
+![buxing.jpg](https://www.z4a.net/images/2017/08/31/buxing.md.jpg)
 
 第二个是软键盘的弹出，之前就是怎么都弹不出来，之后在一篇文章中看到说设置延时是很关键的一步，我试过之后，发现确实如此，可是所有文章都未提到为什么一定要设置延时，唯一说到一点的是说软键盘的加载需要一点时间，当然，我仍然不知道这里为何，这个理由完全不是需要延时的原因啊。延时时间是我手动调试过去的，但发现偶尔还是弹不出来，这里实在是不解，而且不同手机又怎么保证延时时间是正确的？如果你知道这个问题的答案，还请告知，让我学习学习，感激不尽。下面是 CommentDialogFragment 完整的代码：
 
