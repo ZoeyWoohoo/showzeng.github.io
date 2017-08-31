@@ -53,7 +53,7 @@ R = {<1, 2>, <1, 3>, <3, 4>, <3, 5>}
 ```
 
 其对应树形逻辑结构图：
-![例树形结构图](https://www.z4a.net/images/2017/08/31/tree_structure_diagram.jpg)
+![例树形结构图](https://www.z4a.net/images/2017/08/31/tree_structure_diagram.th.jpg)
 
 __存储结构__
 
