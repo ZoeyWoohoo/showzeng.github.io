@@ -206,7 +206,7 @@ server {
 
 这里每个文件夹下面的静态页面文件名都是 index.html ，我以前有个很不好的习惯，比如 zhihu 页面就喜欢命名为 zhihu.html ，但就从前端来看，这也是不符合规范的。
 
-这样配置的话，例如当你访问 [www.showzeng.cn/google/](http://www.showzeng.cn/google/) 时，nginx 就会去 website 目录下的 google 文件夹下寻找到 index.html 并把 google 页面返回，同理，访问 [www.showzeng.cn/zhihu/](http://www.showzeng.cn/zhihu/) 时，会寻找到 zhihu 文件夹下的 index.html 并把 zhihu 页面返回。
+这样配置的话，例如当你访问 [www.showzeng.cn/google/](http://182.254.241.51/google/) 时，nginx 就会去 website 目录下的 google 文件夹下寻找到 index.html 并把 google 页面返回，同理，访问 [www.showzeng.cn/zhihu/](http://182.254.241.51/zhihu/) 时，会寻找到 zhihu 文件夹下的 index.html 并把 zhihu 页面返回。
 
 而在 zhihu、google 、fenghuang 文件夹的同级目录上，再添加你的域名首页 index.html 时，访问 www.example.com 时就会返回了。
 
