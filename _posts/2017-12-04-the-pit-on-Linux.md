@@ -41,7 +41,6 @@ org.gnome.Nautilus.desktop
 ~ $ xdg-mime default org.gnome.Nautilus.desktop inode/directory
 ~ $ xdg-open Downloads
 (这里恢复正常，使用 nautilus 文件管理系统打开)
-
 ```
 
 **3.使用 xdg-open 的替代方案手动设置文件打开程序：**
@@ -90,9 +89,120 @@ mimeo
 
 那你可能会问，解决方案哪来的，这是根据 wiki 总结出来的，应该是没有问题的，你也可以验证一下 :p ，其实也是自己懒得再解决这两个安装问题了，毕竟第一种方案就解决了我的问题，哈哈。
 
->  **参考文档**：[[Ask Ubuntu]] [[Superuser]] [[Arch Wiki]] 
+**参考文档**：[[Ask Ubuntu]] [[Superuser]] [[Arch Wiki(Default applications)]]
+
+### 安装完 WPS 后，系统中文字体发虚
+
+首先个人平时最喜欢的字体是 Monaco 加上 wqy-microhei(文泉驿微米黑) 如果你没有安装这两个字体，强烈建议你安装使用：
+
+==> **安装 Monaco、wqy-microhei 字体**
+
+``` text
+~ $ sudo pacman -S ttf-monaco
+~ $ sudo pacman -S wqy-microhei
+```
+
+WPS 无疑是一款优秀的软件，以前用 Ubuntu 的时候也装过，那时候，表格应用还有中文无法渲染，显示方框的问题一直也没有去解决，但是仅作为偶尔查看一下文档来用，还无伤大雅，主力写报告时还是切回 Windows。而今发现在 Arch 安装时，首先打开应用会提示缺少 Symbol 字体，这简单，直接仓库搜索一下 Symbol 字体，会发现有个 WPS 的字体包：
+
+==> **安装 Symbol 字体**
+
+``` text
+~ $ sudo pacman -S ttf-wps-fonts
+```
+
+就在这个命令执行完了之后，我发现系统中文字体发虚了，那个时候正开着 Chrome，看着页面上的字体简直无法直视。
+
+刚开始觉得是 Symbol 字体安装完之后覆盖了设置，然后自己在 Tweaks 中又把字体设置一遍 (之前直接设置为 Monaco)，可是突然想起，这和中文字体的渲染没有关系，应该是在其他什么配置文件中设置。Google 一番之后找到了原因，安装 WPS 之后，附带的方正字体使得 Serif(衬线体) 和 Sans-Serif(非衬线体，对中文而言为黑体) 字体的中文部分默认指向了方正宋体。这一点可以在字体文件中得到验证：
+
+![WPS-office fonts](https://www.z4a.net/images/2017/12/18/wps-font.png)
+
+这里充斥着各种方正字体。问题找到了怎么解决呢？通过 FontConfig 修改配置文件使 Serif 和 Sans-Serif 字体的渲染字体优先级提前即可。(网上提到的文泉驿官网提供的配置文件生成工具 [Fontconfig Designer](http://wenq.org/cloud/fcdesigner.html) 好像已经挂掉了) 配置文件的路径为：
+
+``` text
+/etc/fonts/conf.avail/50-user.conf
+```
+
+==> **原本未经修改的配置文件：**
+
+``` xml
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+	<!--
+	    Load per-user customization files where stored on XDG Base Directory
+	    specification compliant places. it should be usually:
+	      $HOME/.config/fontconfig/conf.d
+	      $HOME/.config/fontconfig/fonts.conf
+	-->
+	<include ignore_missing="yes" prefix="xdg">fontconfig/conf.d</include>
+	<include ignore_missing="yes" prefix="xdg">fontconfig/fonts.conf</include>
+	<!-- the following elements will be removed in the future -->
+	<include ignore_missing="yes" deprecated="yes">~/.fonts.conf.d</include>
+	<include ignore_missing="yes" deprecated="yes">~/.fonts.conf</include>
+</fontconfig>
+```
+
+==> **修改后的配置文件：**
+
+``` xml
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+<match>
+    <test name="family"><string>sans-serif</string></test>
+    <edit name="family" mode="prepend" binding="strong">
+        <string>文泉驿微米黑</string>
+            <!-- Please install 文泉驿微米黑 first -->
+        <string>文泉驿等宽微米黑</string>
+        <string>DejaVu Sans</string>
+        <string>DejaVu Sans</string>
+        <string>WenQuanYi Micro Hei</string>
+            <!-- Please install WenQuanYi Micro Hei first -->
+        <string>WenQuanYi Bitmap Song</string>
+            <!-- Please install WenQuanYi Bitmap Song first -->
+        <string>Cantarell</string>
+            <!-- Please install Cantarell first -->
+        <string>DejaVu Sans Condensed</string>
+        <string>DejaVu Sans Light</string>
+        <string>DejaVu Sans Mono</string>
+        <string>DejaVu Serif</string>
+        <string>DejaVu Serif Condensed</string>
+    </edit>
+</match>
+<match>
+    <test name="family"><string>serif</string></test>
+    <edit name="family" mode="prepend" binding="strong">
+        <string>文泉驿微米黑</string>
+            <!-- Please install 文泉驿微米黑 first -->
+        <string>文泉驿等宽微米黑</string>
+        <string>DejaVu Sans</string>
+        <string>DejaVu Serif</string>
+        <string>WenQuanYi Bitmap Song</string>
+            <!-- Please install WenQuanYi Bitmap Song first -->
+        <string>Bitstream Charter</string>
+            <!-- Please install Bitstream Charter first -->
+        <string>Cantarell</string>
+            <!-- Please install Cantarell first -->
+        <string>DejaVu Sans Condensed</string>
+        <string>DejaVu Sans Light</string>
+        <string>DejaVu Sans Mono</string>
+        <string>DejaVu Serif</string>
+        <string>DejaVu Serif Condensed</string>
+    </edit>
+</match>
+</fontconfig>
+```
+
+保存修改之后就应该可以看到效果了，如果没有变化，试着重启一下。最后看一下恢复字体之后的界面：
+
+![UI recover](https://www.z4a.net/images/2017/12/18/ui-recover.png)
+
+Awesome :p
+
+**参考文档**：[[WPS 社区]] [[Arch Wiki(Font configuration)]]
 
 [Ask Ubuntu]: https://askubuntu.com/questions/39769/chromium-show-in-folder-opens-in-text-editor
-[Superuser]:  https://superuser.com/questions/721637/how-do-i-fix-chrome-show-in-folder-to-open-in-file-explorer-and-not-in-new-tab
-[Arch Wiki]:  https://wiki.archlinux.org/index.php/Default_applications#Set_default_applications
-
+[Superuser]: https://superuser.com/questions/721637/how-do-i-fix-chrome-show-in-folder-to-open-in-file-explorer-and-not-in-new-tab
+[Arch Wiki(Default applications)]: https://wiki.archlinux.org/index.php/Default_applications#Set_default_applications
+[WPS 社区]: http://bbs.wps.cn/thread-22353520-1-1.html
+[Arch Wiki(Font configuration)]: https://wiki.archlinux.org/index.php/Font_configuration#Replace_or_set_default_fonts
