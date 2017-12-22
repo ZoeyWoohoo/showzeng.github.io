@@ -634,6 +634,8 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
         }
     }
 
+    //2017-12-22 update
+    @Deprecated
     private void setSoftKeyboard() {
 
         // 为 EditText 获取焦点
@@ -711,6 +713,192 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 }
 ```
 
+===================================>
+
+> 2017/12/22 更新分割线
+
+关于软键盘弹出问题，已解决，在此感谢 [limuyang2](https://github.com/limuyang2)!
+
+在之前把文章投稿到一位前辈公众号时，评论里就有人提出应该是绘制问题，那时候没有去深究了。这次又把官方文档看了一遍，包括 Dialog 和 DialogFragment。继承自 Dialog，FragmentDialog 生命周期类似，当我们使用自定义 Dialog 时，重写的是 onCreateDialog() 方法，此时就不需要重写 onCreateView() 方法，且 onCreateDialog() 会在 onCreateView() 之前，onCreate() 之后调用，此时大致的生命周期各方法调用顺序如下：
+
+``` text
+onAttach(Activity) ->
+onCreate(Bundle) ->
+onCreateDialog(Bundle) -> 
+onCreateView(LayoutInflater, ViewGroup, Bundle) ->
+onActivityCreated(Bundle) ->
+onViewStateRestored(Bundle) ->
+onStart() ->
+onResume()
+```
+
+此时，我们调起键盘是在 onCreateDialog() 方法中，此时，DialogFragment 肯定是没有绘制完的，即使是在 onStart() 也只是刚开始绘制，具体的结束时间这里并不知道。这也是为什么设置延时能调起键盘的原因，延时时间，对于性能好一点的手机，可以短一些，但是肯定是需要照顾一下一些性能差的手机，那么，必定需要将延时时间设置在一个相对大的值，这样的结果就是，在性能好的手机上，会出现键盘弹出 '迟钝' 的现象。作为一个精致男孩，这肯定是不能忍的。那就必须设置监听器，监听全局视图的绘制。代码如下：
+
+``` java
+private void setSoftKeyboard() {
+    commentEditText.setFocusable(true);
+    commentEditText.setFocusableInTouchMode(true);
+    commentEditText.requestFocus();
+
+    //为 commentEditText 设置监听器，在 DialogFragment 绘制完后立即呼出软键盘，呼出成功后即注销
+    commentEditText.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputMethodManager.showSoftInput(commentEditText, 0)) {
+                commentEditText.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        }
+    });
+}
+```
+
+在键盘呼出成功后，需要注销监听器，不然会一直被触发，造成的后果就是，无论按下返回键还是软键盘中的收起键，键盘收起时又立马被唤起。这里还有一点是，之前调起键盘使用的是 toggleSoftInput() 方法，这个方法的意思是切换软键盘，如果当前没有调起软键盘，就调起，如果调起了软键盘，就收起。如果这里仍旧使用这个方法，你会发现，在第一次唤起软键盘之后，就一直收起和唤出不停地切换，效果还是很惊艳的，你可以试试 :p 。至于原因，前面已经讲过了，addOnGlobalLayoutListener() 监听的是视图的变化，软键盘的呼出和收起都会引起视图的变化从而触发监听器。
+
+在搜索过程中还发现，软键盘还是有点复杂的，尤其是涉及到如何监听软键盘的状态，看到的方法都是测量 View 的高度，判断软键盘的大概高度，然后推算是不是软键盘弹出。以后有时间可以再深入研究一下，看看能不能写篇就关于软键盘部分的文章 :p
+
+这是更新之后的 CommentDialogFragment 完整代码：
+
+``` java
+// CommentDialogFragment.java
+
+public class CommentDialogFragment extends DialogFragment implements View.OnClickListener{
+
+    private Dialog mDialog;
+    private EditText commentEditText;
+    private ImageView photoButton;
+    private ImageView atButton;
+    private ImageView sendButton;
+    private InputMethodManager inputMethodManager;
+    private DialogFragmentDataCallback dataCallback;
+
+    @Override
+    public void onAttach(Context context) {
+        if (!(getActivity() instanceof DialogFragmentDataCallback)) {
+            throw new IllegalStateException("DialogFragment 所在的 activity 必须实现 DialogFragmentDataCallback 接口");
+        }
+        super.onAttach(context);
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+        mDialog = new Dialog(getActivity(), R.style.BottomDialog);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setContentView(R.layout.dialog_fragment_comment_layout);
+        mDialog.setCanceledOnTouchOutside(true);
+
+        Window window = mDialog.getWindow();
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.gravity = Gravity.BOTTOM;
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        window.setAttributes(layoutParams);
+
+        commentEditText = (EditText) mDialog.findViewById(R.id.edit_comment);
+        photoButton = (ImageView) mDialog.findViewById(R.id.image_btn_photo);
+        atButton = (ImageView) mDialog.findViewById(R.id.image_btn_at);
+        sendButton = (ImageView) mDialog.findViewById(R.id.image_btn_comment_send);
+
+        fillEditText();
+        setSoftKeyboard();
+
+        commentEditText.addTextChangedListener(mTextWatcher);
+        photoButton.setOnClickListener(this);
+        atButton.setOnClickListener(this);
+
+        sendButton.setOnClickListener(this);
+
+        return mDialog;
+    }
+
+    private void fillEditText() {
+        dataCallback = (DialogFragmentDataCallback) getActivity();
+        commentEditText.setText(dataCallback.getCommentText());
+        commentEditText.setSelection(dataCallback.getCommentText().length());
+        if (dataCallback.getCommentText().length() == 0) {
+            sendButton.setEnabled(false);
+            sendButton.setColorFilter(ContextCompat.getColor(getActivity(), R.color.iconCover));
+        }
+    }
+
+    private void setSoftKeyboard() {
+        commentEditText.setFocusable(true);
+        commentEditText.setFocusableInTouchMode(true);
+        commentEditText.requestFocus();
+
+        //为 commentEditText 设置监听器，在 DialogFragment 绘制完后立即呼出软键盘，呼出成功后即注销
+        commentEditText.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager.showSoftInput(commentEditText, 0)) {
+                    commentEditText.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            }
+        });
+    }
+
+    private TextWatcher mTextWatcher = new TextWatcher() {
+
+        private CharSequence temp;
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            temp = s;
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (temp.length() > 0) {
+                sendButton.setEnabled(true);
+                sendButton.setClickable(true);
+                sendButton.setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorAccent));
+            } else {
+                sendButton.setEnabled(false);
+                sendButton.setColorFilter(ContextCompat.getColor(getActivity(), R.color.iconCover));
+            }
+        }
+    };
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.image_btn_photo:
+                Toast.makeText(getActivity(), "Pick photo Activity", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.image_btn_at:
+                Toast.makeText(getActivity(), "Pick people you want to at Activity", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.image_btn_comment_send:
+                Toast.makeText(getActivity(), commentEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+                commentEditText.setText("");
+                dismiss();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        dataCallback.setCommentText(commentEditText.getText().toString());
+        super.onDismiss(dialog);
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        dataCallback.setCommentText(commentEditText.getText().toString());
+        super.onCancel(dialog);
+    }
+}
+```
+
+===================================
+
 ## 写在最后
 
 本文项目完整代码已提交到 GitHub 上，如有需要，请自取。[PureComment 项目链接](https://github.com/showzeng/PureComment)
@@ -732,3 +920,9 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 [onTextChanged 参数解释及实现 EditText 字数监听](http://www.picksomething.cn/?p=34)
 
 [Android 软键盘隐藏寻找最优解](http://www.jianshu.com/p/b2401ae0ee92?utm_campaign=haruki&utm_content=note&utm_medium=reader_share&utm_source=weixin)
+
+[DialogFragment - Android developer](https://developer.android.com/reference/android/app/DialogFragment.html#Lifecycle)
+
+[Fragment - Android developer](https://developer.android.com/reference/android/app/Fragment.html#Lifecycle)
+
+[ViewTreeObserver - Android developer](https://developer.android.com/reference/android/view/ViewTreeObserver.html)
