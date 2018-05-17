@@ -6,6 +6,28 @@ category: Android
 excerpt: 本文为记录 Android 开发路上遇到的坑或需要注意的一些细节。
 ---
 
+### Base64 encode
+> `Base64.encodeToString()` 转码后会加换行符 `\n`
+
+有的时候对于表单登录提交，会先将帐号密码使用 Base64 进行转码，后使用 url encode 转码拼接成 url。但是在使用 Base64 转码的时候，发现和正常转码出来的字符串不一样，仔细对比发现，每个由 Base64 转码出来的字符串后都多了换行，如下：
+
+``` java
+import Android.util.Base64;
+
+String usernameEncode = Base64.encodeToString(username.getBytes(), Base64.DEFAULT);
+String passwordEncode = Base64.encodeToString(password.getBytes(), Base64.DEFAULT);
+
+String encode = usernameEncode + passwordEncode;
+```
+
+使用 Base64 转码后添加的换行，再经 url encode 转码后会变成 %0A 字符，查找发现是 Base64 的默认 flag 即 Base64.DEFAULT 会在转码后添加换行，如果不需要换行，则需要使用 NO_WRAP 这个 flag，如下：
+
+``` java
+String usernameEncode = Base64.encodeToString(username.getBytes(), Base64.NO_WRAP);
+```
+
+至于为什么这个默认的 flag 没有做 99% 的人期望它做的事，达到所期望的效果，是因为向后兼容问题，在很多旧的软件上没有能力处理长的行句，必须要分割成几行新的句子。
+
 ### Http 请求
 
 > **对于 IOException 的处理**
