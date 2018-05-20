@@ -6,6 +6,30 @@ category: Linux
 excerpt: 介于目前已从 Ubuntu 切换到 Arch 环境，大部分遇到的问题都是关于 Arch 的，但大多问题，大同小异，Linux 下都是共通的，如果你刚好也遇到相同的问题，希望能帮到你 :p
 ---
 
+### Android Studio 设置代理失败，导致 gradle 因下载不了第三方库而跑不起来
+
+Linux 下使用 ShadowsocksR 无法实现全局代理，而 Android Studio 上的代理设置，使用本地 socks5 代理 (127.0.0.1:1080) 无效(或者是 http/https 也无效，理论上根据 ShadowsocksR 的配置就应该是 socks5 代理)，我也不知道是什么原因。这一问题很蛋疼，因为第三方就只能手动下载 jar 包导入了。直到一天想到了能不能先用手机代理后，电脑连接手机热点来实现代理，搜索了一下，还真的可行，最重要的是，我的 「米6」 在连接 wifi 之后，能够通过热点的方式共享 wifi 网络，那么，我的手机就相当于一个中转站了。
+
+接下来说一下方法，需要 「日常 fq 的 SSR」 + 「Proxy Server」(可在 [APKPure](https://apkpure.com/proxy-server/com.icecoldapps.proxyserver) 官网下载，或者在下面我提供的 「百度云」 分享下载)。打开 ShadowsocksR 全局代理后，进入 Proxy Server，点击 Add -> Proxy Server -> 填写代理名称(随便命令如：代理1)，代理端口无需修改按它随机生成的即可 -> 按返回键 -> 在弹框提示中点击保存 -> 点击 Start -> 点击 Info(可以看到倒数第三行的 IPv4 地址)。
+
+![ProxyServer.jpg](https://www.z4a.net/images/2018/05/20/ProxyServer.jpg)
+
+接下来，电脑连接手机热点之后，系统设置网络代理 http 和 https，ip 地址为上述说的 Info 信息里倒数第三行的 IPv4 地址，端口号则为之前随机生成的那个端口。
+
+![SystemProxySetting.png](https://www.z4a.net/images/2018/05/20/SystemProxySetting.png)
+
+Android Studio 里打开代理设置，设置 http 代理为同样的 ip 和端口号即可。
+
+![ASProxySetting.png](https://www.z4a.net/images/2018/05/20/ASProxySetting.png)
+
+代理连接测试 Google 成功。
+
+![ProxyTest.png](https://www.z4a.net/images/2018/05/20/ProxyTest.png)
+
+![ProxyTestSucceed.png](https://www.z4a.net/images/2018/05/20/ProxyTestSucceed.png)
+
+**Proxy Server 安装包云盘资源**：[[百度云]]
+
 ### 安装 gedit 之后，chrome 或其他显示 '在文件夹中打开' 的选项默认都使用 gedit 打开
 
 这个是一个比较奇怪的问题，为此之前卸载过一次 gedit，一切恢复正常。但是个人比较偏爱于这个 gnome 自带的文本编辑器，简洁干净又美观，编辑文档，写文章时，都喜欢用它。
@@ -206,3 +230,4 @@ Awesome :p
 [Arch Wiki(Default applications)]: https://wiki.archlinux.org/index.php/Default_applications#Set_default_applications
 [WPS 社区]: http://bbs.wps.cn/thread-22353520-1-1.html
 [Arch Wiki(Font configuration)]: https://wiki.archlinux.org/index.php/Font_configuration#Replace_or_set_default_fonts
+[百度云]: https://pan.baidu.com/s/1oNQ2jL2s1jFfFzFrMfwmpw
