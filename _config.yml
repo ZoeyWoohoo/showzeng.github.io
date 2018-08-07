@@ -1,13 +1,7 @@
-keep_files:   [".git", ".svn"]
-encoding:     "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-paginate: 10
-paginate_path: "blog/page:num"
+excerpt_separator: <!--more-->
 
-
-name: showzeng
-description:  showzeng's blog
-url: http://showzeng.itscoder.com/
+sass:
+  style: :compressed
 
 defaults:
   -
@@ -17,15 +11,26 @@ defaults:
     values:
       layout: "post"
 
-markdown: kramdown
-kramdown:
-  syntax_highlighter: rouge
+name: showzeng
+title: showzeng's blog
+description: Simple is beautiful
+url: http://showzeng.itscoder.com/
 
-gems:
-  - jekyll-feed
+twitter: https://twitter.com/showzeng
+weibo: https://weibo.com/showzeng
+github: https://www.github.com/showzeng
+email: mailto:kingstageshow@gmail.com
+rss: true
+
+show_excerpt: true
+
+plugins_dir:
   - rouge
-  - jekyll-paginate
   - kramdown
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jemoji
 exclude:
   - Gemfile
   - Gemfile.lock

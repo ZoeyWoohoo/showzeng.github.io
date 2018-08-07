@@ -1,103 +1,54 @@
 ---
-title: showzeng's blog
 ---
 
-<head>
-    <title>showzeng's blog</title>
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ site.title }}</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="showzeng's blog" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="showzeng" />
-    <meta name="copyright" content="showzeng" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-    <style type="text/css">
-         .cnzz {
-           display: none;
-         }
-    </style>
+    <link rel="shortcut icon" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png" />
+    <link rel="bookmark" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png" type="image/x-icon" />
 
-    <link rel="shortcut icon" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png" type="image/x-icon" />
-    <link rel="alternate" type="application/atom+xml" title="Atom" href="" />
-
-    <link rel="stylesheet" type="text/css" href="/assets/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/content.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
-</head>
-
-<body>
-    <div id="container">
-        <div id="header">
-            <div class="header-bg" id="header-bg"></div>
-            <div class="nav-bar" id="nav-bar">
-                <div class="nav-bar-avatar" id="nav-bar-avatar" onmouseover="mouseOver()" onmouseout="mouseOut()">
-                    <img class="avatar" id="avatar" src="https://www.z4a.net/images/2017/08/31/avatar.jpg" alt="showzeng" />
-                </div>
-                <a href="/">
-                    <p class="nav-bar-title" id="nav-bar-title">写代码的小超超</p>
-                </a>
-                <div class="other">
-                    <a href="/articles" class="nav-bar-item">归档</a>
-                    <a href="/about" class="nav-bar-item">关于</a>
-                    <a href="/feed" class="nav-bar-item">RSS</a>
-                </div>
-            </div>
-        </div>
-
-
-        <div id="content">
-
-            {% for post in paginator.posts %}
-
-            <div class="content-post">
-                <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
-                <div class="post-date">{{ post.date|date: "%Y-%m-%d" }}</div>
-                <a href="{{ post.url }}" class="post-excerpt">{{ post.excerpt }}</a>
-            </div>
-
-            {% endfor %}
-
-            <div class="content-post-bottom-paginator">
-                <div class="previous-page">
-                    {% if paginator.previous_page %}
-                    <a href="{{ paginator.previous_page_path }}">
-                        <img class="page-img" src="https://www.z4a.net/images/2017/08/31/ic_navigate_before.png" />
-                    </a>
-                    {% else %}
-                    <span></span> {% endif %}
-                </div>
-
-                <div class="next-page">
-                    {% if paginator.next_page %}
-                    <a href="{{ paginator.next_page_path }}">
-                        <img class="page-img" src="https://www.z4a.net/images/2017/08/31/ic_navigate_next.png" />
-                    </a>
-                    {% else %}
-                    <span></span> {% endif %}
-                </div>
-
-                <div class="page">
-                    {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %}
-                    <em class="page-num">{{ page }}</em> {% elsif page == 1 %}
-                    <a class="page-num" href="/">{{ page }}</a> {% else %}
-                    <a class="page-num" href="/blog/page{{ page }}">{{ page }}</a> {% endif %} {% endfor %}
-                </div>
-            </div>
-        </div>
+    <link rel="stylesheet" href="{{ "/assets/css/index.css" }}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+     integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+      crossorigin="anonymous" />
+    {% seo %}
+  </head>
+  <body>
+    <div class="index-avatar">
+      <a href="/articles"><img src="https://www.z4a.net/images/2017/08/31/avatar.jpg"></a>
     </div>
-
-    {% include footer.html %}
-
-    <div class="cnzz">
-      <script type="text/javascript">
-          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-          document.write(unescape("%3Cspan id='cnzz_stat_icon_1260800361'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260800361%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-      </script>
+    <div class="index-content">
+      <h1>{{ site.name }}</h1>
+      <p>{{ site.description }}</p>
+      <div class="index-contact">
+        <p>
+          {% if site.twitter %}
+          <span><a href="{{ site.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a></span>
+          {% endif %}
+          {% if site.weibo %}
+          <span><a href="{{ site.weibo }}" target="_blank"><i class="fab fa-weibo"></i></a></span>
+          {% endif %}
+          {% if site.github %}
+          <span><a href="{{ site.github }}" target="_blank"><i class="fab fa-github"></i></a></span>
+          {% endif %}
+          {% if site.email %}
+          <span><a href="{{ site.email }}" target="_blank"><i class="fas fa-envelope"></i></a></span>
+          {% endif %}
+          {% if site.rss %}
+          <span><a href="/feed.xml" target="_blank"><i class="fas fa-rss"></i></a></span>
+          {% endif %}
+        </p>
+      </div>
     </div>
-</body>
-
-<script type="text/javascript" src="/assets/js/index.js"></script>
-<script type="text/javascript" src="/assets/js/background-animation.js"></script>
-<!-- <script type="text/javascript" src="/assets/js/click-animation.js"></script> -->
+  </body>
+</html>

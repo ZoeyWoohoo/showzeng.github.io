@@ -1,6 +1,10 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem "jekyll"
-gem "jekyll-feed"
-gem "jekyll-paginate"
+group :jekyll_plugins do
+    gem "rouge"
+    gem "kramdown"
+    gem "jekyll-feed"
+    gem "jekyll-seo-tag"
+    gem "jemoji"
+end

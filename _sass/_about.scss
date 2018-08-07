@@ -1,0 +1,10 @@
+@import "common";
+
+body {
+  min-height: 100vh;
+  @include flex(column);
+  background: #fff;
+  margin: 0;
+  word-break: break-word;
+  word-wrap: break-word;
+}

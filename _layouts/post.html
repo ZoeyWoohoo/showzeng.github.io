@@ -1,76 +1,51 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-
-<head>
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title }}</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="showzeng's blog" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="showzeng" />
-    <meta name="copyright" content="showzeng" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-    <style type="text/css">
-         .cnzz {
-           display: none;
-         }
-    </style>
+    <link rel="shortcut icon" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png" />
+    <link rel="bookmark" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png"
+     type="image/x-icon" />
 
-    <link rel="stylesheet" href="/assets/css/footer.css" type="text/css" />
-    <link rel="stylesheet" href="/assets/css/post.css" type="text/css" />
-    <link rel="stylesheet" href="/assets/css/syntax.css" type="text/css" />
-    <link rel="shortcut icon" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png" type="image/x-icon" />
-    <link rel="alternate" type="application/atom+xml" title="Atom" href="" />
+    <link rel="stylesheet" href="{{ "/assets/css/post.css" }}" />
+    <!-- Code Highlight Prism CSS -->
+    <link rel="stylesheet" href="{{ "/assets/css/prism.css" }}" />
+    <link rel="stylesheet" href="{{ "/assets/css/markdown.css" }}" />
+    {% seo %}
+  </head>
 
-</head>
+  <body>
+    <header>
+      {% include header_title.html %}
+      
+      <div class="article-title-description">
+        <p>发表于 {{ page.date | date: "%Y-%m-%d" }} | 本文共 {{ page.content | number_of_words }} 字</p>
+      </div>
+    </header>
 
-<body>
-    <div id="post-container">
-        <div class="post-title">
-            <div class="inner-title">
-                <div class="post-title-back">
-                    <a href="/" class="home-link"><img src="https://www.z4a.net/images/2017/08/31/ic_home.png" class="home" /></a>
-                </div>
-                <div class="post-article-title">
-                    <p>{{ page.title }}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="post-content">{{ content }}</div>
-
-        <a href="" class="up-to-top" id="up-to-top" title="返回顶部">
-            <img src="https://www.z4a.net/images/2017/08/31/ic_arrow_upward.png" class="up-to-top-img" />
-            <!-- <i></i> -->
-        </a>
-    </div>
+    {% include content.html %}
 
     {% include footer.html %}
 
-    <div class="cnzz">
-      <script type="text/javascript">
-          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-          document.write(unescape("%3Cspan id='cnzz_stat_icon_1260800361'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260800361%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-      </script>
-    </div>
-</body>
+    <script type="text/javascript" src="{{ "/assets/js/prism.js" }}"></script>
 
-<script type="text/javascript" src="/assets/js/post.js"></script>
-<!-- <script type="text/javascript" src="/assets/js/click-animation.js"></script> -->
-<script type="text/javascript" >
-var hiddenProperty = 'hidden' in document ? 'hidden' :
-    'webkitHidden' in document ? 'webkitHidden' :
-    'mozHidden' in document ? 'mozHidden' :
-    null;
-var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-var onVisibilityChange = function() {
-    if (!document[hiddenProperty]) {
-        document.title = "ˇε ˇ {{ page.title }}"
-    } else {
-        document.title = ":-( 不要离开我"
-    }
-}
-document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+     crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ "/assets/js/toc.js" }}"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#toc').toc();
+      });
+    </script>
+  </body>
 </html>
