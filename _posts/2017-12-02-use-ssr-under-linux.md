@@ -2,7 +2,7 @@
 layout: post
 title: "Linux 下使用酸酸乳"
 date: 2017-12-02 19:04:29 +0800
-category: shadowsocksR
+category: [shadowsocksR, Linux]
 excerpt: 国内形式不容乐观，以前用的 SS 都转向为仅支持 SSR，Linux 下优秀的 shadowsocks-qt5 客户端也仅支持 SS。于是，自己写了几个脚本，可以让你方便地在命令行下运行 shadowsocksR。
 ---
 
@@ -16,7 +16,7 @@ excerpt: 国内形式不容乐观，以前用的 SS 都转向为仅支持 SSR，
 
 ### 克隆或者直接下载 ssr
 
-``` text
+```
 ~ $ git clone https://github.com/showzeng/shadowsocksr
 ```
 
@@ -30,42 +30,42 @@ excerpt: 国内形式不容乐观，以前用的 SS 都转向为仅支持 SSR，
 
 修改好之后，打开你的终端，进入 shadowsocksr 文件夹 (根据自己所处的路径):
 
-``` text
+```
 ~ $ cd shadowsocksr/
 ```
 
-然后将 runssr 和 stopssr 两个脚本修改为可执行文件并移动到 /usr/local/bin/ 目录下，这样将其添加到了环境变量中，以后输入命令就可执行:
+然后将 runssr 和 stopssr 两个脚本修改为可执行文件并移动到 `/usr/local/bin/` 目录下，这样将其添加到了环境变量中，以后输入命令就可执行:
 
-``` text
+```
 ~/shadowsocksr [manyuser] $ chmod 755 runssr stopssr
 ~/shadowsocksr [manyuser] $ sudo mv runssr stopssr /usr/local/bin
-[sudo] password for xxxx: 
+[sudo] password for xxxx:
 ```
 
-将整个项目文件移动到 /opt/ 目录下，其实之所以做这一步，是因为个人习惯。我一般将自己手动安装的应用都放在 /opt/ 目录下，比如：chrome、Intellij 全家桶、sublime text 等，如果你不想将项目移动到 /opt/ 下，你需要手动修改 runssr 和 stopssr 里面的路径 (也就一两行命令，一看就知道在哪里改)。好了，文件夹移动的操作如下 (假设此时还是在 shadowsocksr 下)：
+将整个项目文件移动到 `/opt/` 目录下，其实之所以做这一步，是因为个人习惯。我一般将自己手动安装的应用都放在 `/opt/` 目录下，比如：chrome、Intellij 全家桶、sublime text 等，如果你不想将项目移动到 `/opt/` 下，你需要手动修改 runssr 和 stopssr 里面的路径 (也就一两行命令，一看就知道在哪里改)。好了，文件夹移动的操作如下 (假设此时还是在 shadowsocksr 下)：
 
-``` text
+```
 ~/shadowsocksr [manyuser] $ ../
 ~ $ sudo mv shadowsocksr/ /opt/
 ```
 
 最后，只需要激活一下环境变量：
 
-``` text
+```
 ~ $ source /etc/profile
 ```
 
 现在，你就可以使用如下命令来随意地打开或关闭 SSR。
 
-#### 打开 SSR
+### 打开 SSR
 
-``` text
+```
 ~ $ runssr
 ```
 
-#### 关闭 SSR
+### 关闭 SSR
 
-``` text
+```
 ~ $ stopssr
 ```
 
@@ -75,18 +75,18 @@ excerpt: 国内形式不容乐观，以前用的 SS 都转向为仅支持 SSR，
 
 经过上面一通操作之后，如果以后需要修改节点信息，其配置文件在如下位置：
 
-``` text
+```
 /opt/shadowsocksr/config.json
 ```
 输出日志在如下位置：
 
-``` text
+```
 /opt/shadowsocksr/shadowsocks/ssserver.log
 ```
 
 如果你想卸载 SSR，直接将整个文件夹和两个脚本文件删除即可：
 
-``` text
+```
 ~ $ sudo rm -r /opt/shadowsocksr
 ~ $ sudo rm /usr/local/bin/runssr /usr/local/bin/stopssr
 ```
@@ -96,4 +96,3 @@ excerpt: 国内形式不容乐观，以前用的 SS 都转向为仅支持 SSR，
 * [shadowsocksr](https://github.com/showzeng/shadowsocksr)
 
 也算是做个备份，很惭愧，也就做了些微小的工作，希望能帮到你 :)
-

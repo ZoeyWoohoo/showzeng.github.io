@@ -3,6 +3,7 @@ layout: post
 title:  "用 DialogFragment 模仿国际微博评论框"
 date:   2017-08-11 22:38:29 +0800
 category: Android
+tags: DialogFragment
 excerpt: 在写家园内部办公系统 US App 话题页面的时候，因自己绞尽脑汁也想不出什么好的设计图，脑海中唯一印象深刻的就是国际微博的 UI 了，索性就模仿着来吧，于是有了本文。
 ---
 
@@ -14,15 +15,15 @@ excerpt: 在写家园内部办公系统 US App 话题页面的时候，因自己
 
 ## 分析
 
-1.从图中，可以看出，微博详情页底下的一个评论条其实并不做输入框使用，而是充当一个 Button 的作用，唤起真正的输入框。
+1. 从图中，可以看出，微博详情页底下的一个评论条其实并不做输入框使用，而是充当一个 Button 的作用，唤起真正的输入框。
 
-2.真正的输入框，从效果来看，像是 Dialog，这里选用了自定义布局的 DialogFragment。
+2. 真正的输入框，从效果来看，像是 Dialog，这里选用了自定义布局的 DialogFragment。
 
-3.输入框 Dismiss 或者 Cancel 时，若评论并未提交，则将其显示到底部的评论条中，单行显示，溢出省略。
+3. 输入框 Dismiss 或者 Cancel 时，若评论并未提交，则将其显示到底部的评论条中，单行显示，溢出省略。
 
-4.再次进入输入框时，若评论条内容不为空，需将文本内容填充到输入框中。
+4. 再次进入输入框时，若评论条内容不为空，需将文本内容填充到输入框中。
 
-5.评论框中无字符输入时，提交按钮为灰色且不可触发，反之为正常的提交按钮。
+5. 评论框中无字符输入时，提交按钮为灰色且不可触发，反之为正常的提交按钮。
 
 ## 分析完了那就开工吧
 
@@ -32,7 +33,7 @@ excerpt: 在写家园内部办公系统 US App 话题页面的时候，因自己
 
 > Tip 1: 直接选用 TextView 而不是 EditText
 
-在一开始的时候，我的第一直觉是认为那是一个 EditText，所以直接用的这个控件，设置为不可编辑，一切都看似那么的合乎情理。直到调试的时候，我发现在首次进入页面的时候，第一次点击评论条，并不能触发点击事件，需要第二次点击时才有效，而后就不会再出现问题。我试图去找过是什么原因，但未果，也不排除是否是机型或者什么其他原因，但倾向于是控件的事件分发哪里被截断了。总之，如果你能找到原因，还请告知，让我学习学习，感激不尽。
+在一开始的时候，我的第一直觉是认为那是一个 EditText，所以直接用的这个控件，设置为不可编辑，一切都看似那么的合乎情理。直到调试的时候，我发现在首次进入页面的时候，第一次点击评论条，并不能触发点击事件，需要第二次点击时才有效，而后就不会再出现问题。我试图去找过是什么原因，但未果，也不排除是否是机型或者什么其他原因，但倾向于是控件的事件分发哪里被截断了。总之，如果你能找到原因，可以一起交流交流。
 
 之后转念一想，反正 TextView 也是可以设置 Hint 的，那为啥不直接用 TextView 呢，简单省事。
 
@@ -143,7 +144,7 @@ excerpt: 在写家园内部办公系统 US App 话题页面的时候，因自己
 
 ### 3. DialogFragment 逻辑代码
 
-关于 DialogFragment 用法，网上搜一下就有很多了。首先必须要实现的是 onCreateView() 或者是 onCreateDialog() 方法，这里比较核心的应该就是布局的位置了，因为 DialogFragment 默认布局是常见的 Dialog 样式，这里需要手动设置：
+关于 DialogFragment 用法，网上搜一下就有很多了。首先必须要实现的是 `onCreateView()` 或者是 `onCreateDialog()` 方法，这里比较核心的应该就是布局的位置了，因为 DialogFragment 默认布局是常见的 Dialog 样式，这里需要手动设置：
 
 ``` java
 // CommentDialogFragment.java
@@ -388,7 +389,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
             case R.id.image_btn_comment_send:
                 Toast.makeText(getActivity(), commentEditText.getText().toString(), Toast.LENGTH_SHORT).show();
 
-                // 提交成功后 ( 根据具体需求一般为网络请求发送评论 ) 清空评论框， 重写 onDismiss，使评论框文本内容填充回评论条，这里提交后就设为空
+                // 提交成功后 (根据具体需求一般为网络请求发送评论) 清空评论框，重写 onDismiss，使评论框文本内容填充回评论条，这里提交后就设为空
                 commentEditText.setText("");
                 dismiss();
                 break;
@@ -566,17 +567,17 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 
 关于软键盘的呼出问题，也是一个比较头疼的问题，自己也碰到了比较多坑，网上的解决方案比较多，也比较多没有用 :) 。文末有推荐几篇比较优秀的文章可供参考。
 
-> Tip 4: 在给 EditText 获取焦点 (requestFocus() 方法) 之前，需设置 setFocusable 和 setFocusableInTouchMode 为 true
+> Tip 4: 在给 EditText 获取焦点 (`requestFocus()` 方法) 之前，需设置 setFocusable 和 setFocusableInTouchMode 为 true
 
 高中毕业，买了第一部手机，Meizu MX4，今天我才发现真的是买对了。且不说 Flyme 基于 bug，就 MX4 这款变态的占屏比，真可谓是 Android 开发人员必备的调试机。
 
 ![haixiu.jpg](https://www.z4a.net/images/2017/08/31/haixiu.md.jpg)
 
-第一个要提出的点是：在填充评论条文本内容到评论框后，需要调用 EditText 的 setSelection 方法设置光标位置，不然魅族默认没有光标，也不会有软键盘弹出，我不知道是不是只有我的手机会这样，反正用另一部华为手机就没有这个问题。( 这里有点奇怪的是，为什么国际微博评论框弹出时，光标是置于文本头的，感觉这里很不人性化 )
+第一个要提出的点是：在填充评论条文本内容到评论框后，需要调用 EditText 的 `setSelection` 方法设置光标位置，不然魅族默认没有光标，也不会有软键盘弹出，我不知道是不是只有我的手机会这样，反正用另一部华为手机就没有这个问题。(这里有点奇怪的是，为什么国际微博评论框弹出时，光标是置于文本头的，感觉这里很不人性化)
 
 ![buxing.jpg](https://www.z4a.net/images/2017/08/31/buxing.md.jpg)
 
-第二个是软键盘的弹出，之前就是怎么都弹不出来，之后在一篇文章中看到说设置延时是很关键的一步，我试过之后，发现确实如此，可是所有文章都未提到为什么一定要设置延时，唯一说到一点的是说软键盘的加载需要一点时间，当然，我仍然不知道这里为何，这个理由完全不是需要延时的原因啊。延时时间是我手动调试过去的，但发现偶尔还是弹不出来，这里实在是不解，而且不同手机又怎么保证延时时间是正确的？如果你知道这个问题的答案，还请告知，让我学习学习，感激不尽。下面是 CommentDialogFragment 完整的代码：
+第二个是软键盘的弹出，之前就是怎么都弹不出来，之后在一篇文章中看到说设置延时是很关键的一步，我试过之后，发现确实如此，可是所有文章都未提到为什么一定要设置延时，唯一说到一点的是说软键盘的加载需要一点时间，当然，我仍然不知道这里为何，这个理由完全不是需要延时的原因啊。延时时间是我手动调试过去的，但发现偶尔还是弹不出来，这里实在是不解，而且不同手机又怎么保证延时时间是正确的？如果你知道这个问题的答案，可以一起交流一下。下面是 CommentDialogFragment 完整的代码：
 
 ``` java
 // CommentDialogFragment.java
@@ -634,7 +635,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
         }
     }
 
-    //2017-12-22 update
+    // !!! 2017-12-22 updated
     @Deprecated
     private void setSoftKeyboard() {
 
@@ -643,7 +644,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
         commentEditText.setFocusableInTouchMode(true);
         commentEditText.requestFocus();
 
-        // TODO: 17-8-11 为何这里要延时才能弹出软键盘, 延时时长又如何判断？ 目前是手动调试
+        // TODO: 17-8-11 为何这里要延时才能弹出软键盘, 延时时长又如何判断？目前是手动调试
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -713,18 +714,18 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 }
 ```
 
-===================================>
+---
 
-> 2017/12/22 更新分割线
+> ！！！ 2017/12/22 更新
 
 关于软键盘弹出问题，已解决，在此感谢 [limuyang2](https://github.com/limuyang2)!
 
-在之前把文章投稿到一位前辈公众号时，评论里就有人提出应该是绘制问题，那时候没有去深究了。这次又把官方文档看了一遍，包括 Dialog 和 DialogFragment。继承自 Dialog，FragmentDialog 生命周期类似，当我们使用自定义 Dialog 时，重写的是 onCreateDialog() 方法，此时就不需要重写 onCreateView() 方法，且 onCreateDialog() 会在 onCreateView() 之前，onCreate() 之后调用，此时大致的生命周期各方法调用顺序如下：
+在之前把文章投稿到一位前辈公众号时，评论里就有人提出应该是绘制问题，那时候没有去深究了。这次又把官方文档看了一遍，包括 Dialog 和 DialogFragment。继承自 Dialog，FragmentDialog 生命周期类似，当我们使用自定义 Dialog 时，重写的是 `onCreateDialog()` 方法，此时就不需要重写 `onCreateView()` 方法，且 `onCreateDialog()` 会在 `onCreateView()` 之前，`onCreate()` 之后调用，此时大致的生命周期各方法调用顺序如下：
 
 ``` text
 onAttach(Activity) ->
 onCreate(Bundle) ->
-onCreateDialog(Bundle) -> 
+onCreateDialog(Bundle) ->
 onCreateView(LayoutInflater, ViewGroup, Bundle) ->
 onActivityCreated(Bundle) ->
 onViewStateRestored(Bundle) ->
@@ -732,7 +733,7 @@ onStart() ->
 onResume()
 ```
 
-此时，我们调起键盘是在 onCreateDialog() 方法中，此时，DialogFragment 肯定是没有绘制完的，即使是在 onStart() 也只是刚开始绘制，具体的结束时间这里并不知道。这也是为什么设置延时能调起键盘的原因，延时时间，对于性能好一点的手机，可以短一些，但是肯定是需要照顾一下一些性能差的手机，那么，必定需要将延时时间设置在一个相对大的值，这样的结果就是，在性能好的手机上，会出现键盘弹出 '迟钝' 的现象。作为一个精致男孩，这肯定是不能忍的。那就必须设置监听器，监听全局视图的绘制。代码如下：
+此时，我们调起键盘是在 `onCreateDialog()` 方法中，此时，DialogFragment 肯定是没有绘制完的，即使是在 `onStart()` 也只是刚开始绘制，具体的结束时间这里并不知道。这也是为什么设置延时能调起键盘的原因，延时时间，对于性能好一点的手机，可以短一些，但是肯定是需要照顾一下一些性能差的手机，那么，必定需要将延时时间设置在一个相对大的值，这样的结果就是，在性能好的手机上，会出现键盘弹出「迟钝」的现象。作为一个精致男孩，这肯定是不能忍的。那就必须设置监听器，监听全局视图的绘制。代码如下：
 
 ``` java
 private void setSoftKeyboard() {
@@ -740,7 +741,7 @@ private void setSoftKeyboard() {
     commentEditText.setFocusableInTouchMode(true);
     commentEditText.requestFocus();
 
-    //为 commentEditText 设置监听器，在 DialogFragment 绘制完后立即呼出软键盘，呼出成功后即注销
+    // 为 commentEditText 设置监听器，在 DialogFragment 绘制完后立即呼出软键盘，呼出成功后即注销
     commentEditText.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
         public void onGlobalLayout() {
@@ -753,7 +754,7 @@ private void setSoftKeyboard() {
 }
 ```
 
-在键盘呼出成功后，需要注销监听器，不然会一直被触发，造成的后果就是，无论按下返回键还是软键盘中的收起键，键盘收起时又立马被唤起。这里还有一点是，之前调起键盘使用的是 toggleSoftInput() 方法，这个方法的意思是切换软键盘，如果当前没有调起软键盘，就调起，如果调起了软键盘，就收起。如果这里仍旧使用这个方法，你会发现，在第一次唤起软键盘之后，就一直收起和唤出不停地切换，效果还是很惊艳的，你可以试试 :p 。至于原因，前面已经讲过了，addOnGlobalLayoutListener() 监听的是视图的变化，软键盘的呼出和收起都会引起视图的变化从而触发监听器。
+在键盘呼出成功后，需要注销监听器，不然会一直被触发，造成的后果就是，无论按下返回键还是软键盘中的收起键，键盘收起时又立马被唤起。这里还有一点是，之前调起键盘使用的是 `toggleSoftInput()` 方法，这个方法的意思是切换软键盘，如果当前没有调起软键盘，就调起，如果调起了软键盘，就收起。如果这里仍旧使用这个方法，你会发现，在第一次唤起软键盘之后，就一直收起和唤出不停地切换，效果还是很惊艳的，你可以试试 :p 。至于原因，前面已经讲过了，`addOnGlobalLayoutListener()` 监听的是视图的变化，软键盘的呼出和收起都会引起视图的变化从而触发监听器。
 
 在搜索过程中还发现，软键盘还是有点复杂的，尤其是涉及到如何监听软键盘的状态，看到的方法都是测量 View 的高度，判断软键盘的大概高度，然后推算是不是软键盘弹出。以后有时间可以再深入研究一下，看看能不能写篇就关于软键盘部分的文章 :p
 
@@ -826,7 +827,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
         commentEditText.setFocusableInTouchMode(true);
         commentEditText.requestFocus();
 
-        //为 commentEditText 设置监听器，在 DialogFragment 绘制完后立即呼出软键盘，呼出成功后即注销
+        // 为 commentEditText 设置监听器，在 DialogFragment 绘制完后立即呼出软键盘，呼出成功后即注销
         commentEditText.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -897,7 +898,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 }
 ```
 
-===================================
+---
 
 ## 写在最后
 
