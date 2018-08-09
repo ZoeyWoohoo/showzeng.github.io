@@ -166,6 +166,14 @@ header {
   transition: opacity 0.3s;
 }
 
+@media (max-width: 415px) {
+  header {
+    a {
+      font-size: 1.7em;
+    }
+  }
+}
+
 @media (min-width: 769px) {
   .title .title-tip::after {
     content: "";
@@ -218,6 +226,19 @@ header {
   max-width: 840px;
   margin: 0 auto;
   padding: 0 30px;
+}
+
+@media (max-width: 415px) {
+  .page-content {
+    p {
+      font-size: 1em;
+      line-height: 1.7;
+    }
+  }
+
+  .content {
+    padding: 0 20px;
+  }
 }
 /* (content.html) CSS end */
 
