@@ -24,13 +24,13 @@ rss: true
 
 show_excerpt: true
 
-plugins_dir:
+plugins:
   - rouge
   - kramdown
   - jekyll-feed
-  - jekyll-paginate
   - jekyll-seo-tag
   - jemoji
+
 exclude:
   - Gemfile
   - Gemfile.lock
