@@ -1,52 +1,67 @@
 @import "common";
 
-html {
-  height: 100%;
+body {
+  @include flex(column);
+  -webkit-box-align: center;
+     -ms-flex-align: center;
+        align-items: center;
+  -webkit-box-pack: end;
+     -ms-flex-pack: end;
+   justify-content: flex-end;
+
+  min-height: 100vh;
+  margin: 0;
+
+  background: #f0f0f0;
 }
 
-body {
-  min-height: 100vh;
-  @include flex(column);
-  background: #f0f0f0;
-  margin: 0;
-  align-items: center;
-  justify-content: flex-end;
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .index-avatar {
-  width: 150px;
-  height: 150px;
   position: relative;
   bottom: -95px;
+
   border: #f0f0f0 solid 20px;
   border-radius: 50%;
+  width: 150px;
+  height: 150px;
 
   &::before{
-    animation: pulse 1s linear infinite;
+    -webkit-animation: pulse 1s linear infinite;
+            animation: pulse 1s linear infinite;
     border: #ffffff solid 10px;
     border-radius: 50%;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     content: ' ';
     height: 140%;
     left: -20%;
     opacity: .9;
     position: absolute;
     top: -20%;
-    transform: scale(0.714);
+    -webkit-transform: scale(0.714);
+            transform: scale(0.714);
     width: 140%;
     z-index: 1;
   }
 }
 
 .index-avatar img {
-  width: 100%;
-  @include border-radius(50%);
   position: relative;
   z-index: 2;
-  @include material-box-shadow();
 
-  &:hover {
-    @include material-box-shadow(3);
+  width: 100%;
+  @include border-radius(50%);
+  @include material-box-shadow();
+}
+
+@media (min-width: 769px) {
+  .index-avatar img {
+    &:hover {
+      @include material-box-shadow(3);
+    }
   }
 }
 
@@ -54,14 +69,15 @@ body {
   width: 100%;
   min-height: 70vh;
   height: auto;
+
   @include material-box-shadow(1);
+
   background: #fff;
 }
 
 .index-content h1, p {
-  font-family: 'Helvetica', sans-serif;
-  text-align: center;
   position: relative;
+  text-align: center;
 }
 
 .index-content h1 {
@@ -84,9 +100,13 @@ body {
   text-decoration: none;
   margin: 0 10px;
   @include material-transition();
+}
 
-  &:hover {
-    color: #000000;
+@media (min-width: 769px) {
+  .index-contact span a {
+    &:hover {
+      color: #000000;
+    }
   }
 }
 

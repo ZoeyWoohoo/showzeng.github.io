@@ -4,20 +4,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Categories</title>
+    <title>
+      {% if page.title %}
+        {{ page.title }}
+      {% else %}
+        分类
+      {% endif %}
+    </title>
 
     <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link rel="shortcut icon" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png" />
-    <link rel="bookmark" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png" type="image/x-icon" />
-
-    <link rel="stylesheet" href="{{ "/assets/css/categories.css" }}" />
+    <link rel="shortcut icon" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png">
+    <link rel="bookmark" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png" type="image/x-icon">
+    
+    <link rel="stylesheet" href="{{ "/assets/css/categories.css" }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
      integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
-      crossorigin="anonymous" />
+      crossorigin="anonymous">
     {% seo %}
   </head>
   <body>

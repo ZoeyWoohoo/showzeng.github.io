@@ -23,8 +23,8 @@ title: 关于
 
 ---
 
-[Jekyll]: https://jekyll.com/
+[Jekyll]: https://jekyllrb.com/
 [GitHub Pages]: https://pages.github.com/
 [Font Awesome]: https://fontawesome.com/
 [Minimalism]: https://github.com/showzeng/minimalism
-[家园工作室]: https://team.ncuos.com/
+[家园工作室]: http://team.ncuos.com/

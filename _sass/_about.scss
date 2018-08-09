@@ -1,10 +1,17 @@
 @import "common";
 
 body {
-  min-height: 100vh;
   @include flex(column);
-  background: #fff;
+
+  min-height: 100vh;
   margin: 0;
+
+  background: #fff;
+
   word-break: break-word;
   word-wrap: break-word;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
 }

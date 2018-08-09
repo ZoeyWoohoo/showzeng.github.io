@@ -1,29 +1,43 @@
 @import "common";
 
 body {
-  min-height: 100vh;
   @include flex(column);
-  background: #fff;
+
+  min-height: 100vh;
   margin: 0;
+  background: #fff;
 }
 
-// timeline
+a {
+  -webkit-tap-highlight-color: transparent;
+}
 
 .timeline {
-  margin: 0 auto;
-
+  @include flex(column);
   -webkit-box-flex: 1;
           -ms-flex: 1;
               flex: 1;
 
-  ul {
-    padding: 0 0 50px;
+  margin: 0 auto;
+
+  .timeline-title {
+    margin-bottom: 0;
+    color: #666;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
   }
 
-  p {
-    color: #666;
-    font-size: 2em;
-    font-weight: bold;
+  ul {
+    padding: 0 0 50px;
+    margin: 0;
+
+    p {
+      color: #666;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-align: center;
+    }
   }
 
   time {
@@ -36,18 +50,25 @@ body {
     text-decoration: none;
     color: #eee;
   }
+}
 
-  a:hover {
-    color: #fff;
+@media (min-width: 769px) {
+  .timeline {
+    a:hover {
+      color: #fff;
+    }
   }
 }
 
 .timeline ul li {
-  list-style-type: none;
   position: relative;
+
   width: 2px;
   margin: 0 auto;
   padding-top: 50px;
+
+  list-style-type: none;
+
   background: #bdbdbd;
 }
 
@@ -56,7 +77,8 @@ body {
   position: absolute;
   left: 50%;
   bottom: 45px;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -103,10 +125,10 @@ body {
   border-color: transparent transparent transparent #999;
 }
 
-// timeline effects
-
+/* timeline effects */
 .timeline ul li::after {
-  transition: background .5s ease-in-out;
+  -webkit-transition: background-color .5s ease-in-out;
+          transition: background-color .5s ease-in-out;
 }
 
 .timeline ul li.in-view::after {
@@ -116,19 +138,23 @@ body {
 .timeline ul li div {
   visibility: hidden;
   opacity: 0;
-  transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+          transition: all .5s ease-in-out;
 }
 
 .timeline ul li:nth-child(odd) div {
-  transform: translate3d(200px, 0, 0);
+  -webkit-transform: translate3d(200px, 0, 0);
+          transform: translate3d(200px, 0, 0);
 }
 
 .timeline ul li:nth-child(even) div {
-  transform: translate3d(-200px, 0, 0);
+  -webkit-transform: translate3d(-200px, 0, 0);
+          transform: translate3d(-200px, 0, 0);
 }
 
 .timeline ul li.in-view div {
-  transform: none;
+  -webkit-transform: none;
+          transform: none;
   visibility: visible;
   opacity: 1;
 }
@@ -161,10 +187,10 @@ body {
     border-color: transparent #999 transparent transparent;
   }
 
-  // timeline effects
-
+  /* timeline effects */
   .timeline ul li::after {
-    transition: background .5s ease-in-out;
+    -webkit-transition: background-color .5s ease-in-out;
+            transition: background-color .5s ease-in-out;
   }
 
   .timeline ul li.in-view::after {
@@ -174,19 +200,23 @@ body {
   .timeline ul li div {
     visibility: hidden;
     opacity: 0;
-    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
   }
 
   .timeline ul li:nth-child(odd) div {
-    transform: translate3d(200px, 0, 0);
+    -webkit-transform: translate3d(200px, 0, 0);
+            transform: translate3d(200px, 0, 0);
   }
 
   .timeline ul li:nth-child(even) div {
-    transform: translate3d(200px, 0, 0);
+    -webkit-transform: translate3d(200px, 0, 0);
+            transform: translate3d(200px, 0, 0);
   }
 
   .timeline ul li.in-view div {
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
     visibility: visible;
     opacity: 1;
   }
@@ -210,14 +240,15 @@ body {
     ul {
       padding: 0;
       margin: 0;
-    }
 
-    p {
-      font-size: 1.2em;
+      p {
+        font-size: 1.2em;
+        text-align: left;
+      }
     }
 
     time, a {
-      font-size: 0.8em;
+      font-size: .8em;
     }
   }
 
@@ -239,10 +270,10 @@ body {
     border-color: transparent #999 transparent transparent;
   }
 
-  // timeline effects
-
+  /* timeline effects */
   .timeline ul li::after {
-    transition: background .5s ease-in-out;
+    -webkit-transition: background-color .5s ease-in-out;
+            transition: background-color .5s ease-in-out;
   }
 
   .timeline ul li.in-view::after {
@@ -252,26 +283,30 @@ body {
   .timeline ul li div {
     visibility: hidden;
     opacity: 0;
-    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
   }
 
   .timeline ul li:nth-child(odd) div {
-    transform: translate3d(50px, 0, 0);
+    -webkit-transform: translate3d(50px, 0, 0);
+            transform: translate3d(50px, 0, 0);
   }
 
   .timeline ul li:nth-child(even) div {
-    transform: translate3d(50px, 0, 0);
+    -webkit-transform: translate3d(50px, 0, 0);
+            transform: translate3d(50px, 0, 0);
   }
 
   .timeline ul li.in-view div {
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
     visibility: visible;
     opacity: 1;
   }
 
   .copyright {
     p {
-      font-size: 0.7em;
+      font-size: .7em;
     }
   }
 }

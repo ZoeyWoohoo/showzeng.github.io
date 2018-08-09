@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en" }}">
+<html lang="{{ site.lang | default: "zh-cmn-Hans" }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title }}</title>
+    <title>
+      {% if page.title %}
+        {{ page.title }}
+      {% else %}
+        文章页
+      {% endif %}
+    </title>
 
     <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -15,17 +21,16 @@
     <link rel="bookmark" href="https://www.z4a.net/images/2017/08/31/shortcut_icon.png"
      type="image/x-icon" />
 
-    <link rel="stylesheet" href="{{ "/assets/css/post.css" }}" />
-    <!-- Code Highlight Prism CSS -->
-    <link rel="stylesheet" href="{{ "/assets/css/prism.css" }}" />
-    <link rel="stylesheet" href="{{ "/assets/css/markdown.css" }}" />
+    <link rel="stylesheet" href="{{ "/assets/css/post.css" }}">
+    <link rel="stylesheet" href="{{ "/assets/css/prism.css" }}">
+    <link rel="stylesheet" href="{{ "/assets/css/markdown.css" }}">
     {% seo %}
   </head>
 
   <body>
     <header>
       {% include header_title.html %}
-      
+
       <div class="article-title-description">
         <p>发表于 {{ page.date | date: "%Y-%m-%d" }} | 本文共 {{ page.content | number_of_words }} 字</p>
       </div>
@@ -35,17 +40,7 @@
 
     {% include footer.html %}
 
-    <script type="text/javascript" src="{{ "/assets/js/prism.js" }}"></script>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-     crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ "/assets/js/toc.js" }}"></script>
-
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('#toc').toc();
-      });
-    </script>
+    <script src="{{ "/assets/js/prism.js" }}"></script>
+    <script src="{{ "/assets/js/linktarget.js" }}"></script>
   </body>
 </html>

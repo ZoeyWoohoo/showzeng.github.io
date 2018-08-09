@@ -1,19 +1,27 @@
 @import "common";
 
 body {
-  min-height: 100vh;
   @include flex(column);
-  background: #ffffff;
+
+  min-height: 100vh;
   margin: 0;
+
+  background: #ffffff;
+
   word-break: break-word;
   word-wrap: break-word;
 }
 
 img {
+  display: block;
+
   max-width: 100%;
   max-height: 600px;
-  display: block;
   margin: 40px auto;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 header {

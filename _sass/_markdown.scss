@@ -41,23 +41,23 @@ blockquote, ul, ol, dl, table, pre {
 blockquote {
   padding: 0 1em;
   color: #666;
-  border-left: 0.25em solid #dfe2e5;
+  border-left: .25em solid #dfe2e5;
 }
 
 blockquote p {
   text-indent: 0;
-  padding-left: 0.5em;
+  padding-left: .5em;
   margin: 0 0 !important;
 }
 
 hr {
   margin: 2em 0;
   border: 0;
-  border-top: 1px solid rgba(128,128,128,0.1);
+  border-top: 1px solid rgba(128, 128, 128, .1);
 }
 
 pre {
-  font-size: 0.96em;
+  font-size: .96em;
   margin: 0 0 1.1em;
 
   code {
@@ -78,7 +78,7 @@ pre[class="highlight"] {
   border-radius: 4px;
   padding: 10px 15px;
   margin: 0 0 30px;
-  background: none repeat scroll 0 0 rgba(102,128,153,.05);
+  background: none repeat scroll 0 0 rgba(102, 128, 153, .05);
 
   word-break: break-word;
   word-wrap: break-word;
@@ -98,7 +98,7 @@ ul {
 }
 
 li {
-  margin-left: 0px;
+  margin-left: 0;
   width: 100%;
 }
 
@@ -127,7 +127,7 @@ table {
   color: #444;
 }
 
-table>tbody>tr:nth-of-type(odd) {
+table > tbody > tr:nth-of-type(odd) {
   background-color: #f8f8f8;
 }
 

@@ -8,9 +8,9 @@ excerpt: 介于目前已从 Ubuntu 切换到 Arch 环境，大部分遇到的问
 
 ## Android Studio 代理
 
-**Android Studio 设置代理失败，导致 gradle 因下载不了第三方库而跑不起来**。Linux 下使用 ShadowsocksR 无法实现全局代理，而 Android Studio 上的代理设置，使用本地 socks5 代理 (127.0.0.1:1080) 无效(或者是 http/https 也无效，理论上根据 ShadowsocksR 的配置就应该是 socks5 代理)，我也不知道是什么原因。这一问题很蛋疼，因为第三方就只能手动下载 jar 包导入了。直到一天想到了能不能先用手机代理后，电脑连接手机热点来实现代理，搜索了一下，还真的可行，最重要的是，我的 「米6」 在连接 wifi 之后，能够通过热点的方式共享 wifi 网络，那么，我的手机就相当于一个中转站了。
+**Android Studio 设置代理失败，导致 gradle 因下载不了第三方库而跑不起来**。Linux 下使用 ShadowsocksR 无法实现全局代理，而 Android Studio 上的代理设置，使用本地 socks5 代理 (127.0.0.1:1080) 无效 (或者是 http/https 也无效，理论上根据 ShadowsocksR 的配置就应该是 socks5 代理)，我也不知道是什么原因。这一问题很蛋疼，因为第三方就只能手动下载 jar 包导入了。直到一天想到了能不能先用手机代理后，电脑连接手机热点来实现代理，搜索了一下，还真的可行，最重要的是，我的「米6」在连接 wifi 之后，能够通过热点的方式共享 wifi 网络，那么，我的手机就相当于一个中转站了。
 
-接下来说一下方法，需要 「日常 fq 的 SSR」 + 「Proxy Server」(可在 [APKPure](https://apkpure.com/proxy-server/com.icecoldapps.proxyserver) 官网下载，或者在下面我提供的 「百度云」 分享下载)。打开 ShadowsocksR 全局代理后，进入 Proxy Server，点击 Add -> Proxy Server -> 填写代理名称(随便命令如：代理1)，代理端口无需修改按它随机生成的即可 -> 按返回键 -> 在弹框提示中点击保存 -> 点击 Start -> 点击 Info(可以看到倒数第三行的 IPv4 地址)。
+接下来说一下方法，需要「日常 fq 的 SSR」+「Proxy Server」(可在 [APKPure](https://apkpure.com/proxy-server/com.icecoldapps.proxyserver) 官网下载，或者在下面我提供的「百度云」分享下载)。打开 ShadowsocksR 全局代理后，进入 Proxy Server，点击 Add -> Proxy Server -> 填写代理名称 (随便命令如：代理1)，代理端口无需修改按它随机生成的即可 -> 按返回键 -> 在弹框提示中点击保存 -> 点击 Start -> 点击 Info (可以看到倒数第三行的 IPv4 地址)。
 
 ![ProxyServer.jpg](https://www.z4a.net/images/2018/05/20/ProxyServer.jpg)
 
@@ -36,7 +36,7 @@ Android Studio 里打开代理设置，设置 http 代理为同样的 ip 和端�
 
 ![gedit UI](https://www.z4a.net/images/2017/12/04/geditUI.png)
 
-于是，又把它下了回来，然后就又碰上了上面所说的这个问题。‘Show in folder’ 本该是直接使用 nautilus 文件管理打开，为什么用 gedit 打开呢？你要用它打开就算了，你又不支持打开文件夹，搞毛啊 :(
+于是，又把它下了回来，然后就又碰上了上面所说的这个问题。「Show in folder」本该是直接使用 nautilus 文件管理打开，为什么用 gedit 打开呢？你要用它打开就算了，你又不支持打开文件夹，搞毛啊 :(
 
 ![gedit error](https://www.z4a.net/images/2017/12/04/geditError.png)
 
@@ -123,7 +123,7 @@ mimeo
 
 ## 中文字体发虚
 
-**安装完 WPS 后，系统中文字体发虚**。首先个人平时最喜欢的字体是 Monaco 加上 wqy-microhei(文泉驿微米黑) 如果你没有安装这两个字体，强烈建议你安装使用：
+**安装完 WPS 后，系统中文字体发虚**。首先个人平时最喜欢的字体是 Monaco 加上 wqy-microhei (文泉驿微米黑) 如果你没有安装这两个字体，强烈建议你安装使用：
 
 ==> **安装 Monaco、wqy-microhei 字体**
 
@@ -142,7 +142,7 @@ WPS 无疑是一款优秀的软件，以前用 Ubuntu 的时候也装过，那�
 
 就在这个命令执行完了之后，我发现系统中文字体发虚了，那个时候正开着 Chrome，看着页面上的字体简直无法直视。
 
-刚开始觉得是 Symbol 字体安装完之后覆盖了设置，然后自己在 Tweaks 中又把字体设置一遍 (之前直接设置为 Monaco)，可是突然想起，这和中文字体的渲染没有关系，应该是在其他什么配置文件中设置。Google 一番之后找到了原因，安装 WPS 之后，附带的方正字体使得 Serif(衬线体) 和 Sans-Serif(非衬线体，对中文而言为黑体) 字体的中文部分默认指向了方正宋体。这一点可以在字体文件中得到验证：
+刚开始觉得是 Symbol 字体安装完之后覆盖了设置，然后自己在 Tweaks 中又把字体设置一遍 (之前直接设置为 Monaco)，可是突然想起，这和中文字体的渲染没有关系，应该是在其他什么配置文件中设置。Google 一番之后找到了原因，安装 WPS 之后，附带的方正字体使得 Serif (衬线体) 和 Sans-Serif (非衬线体，对中文而言为黑体) 字体的中文部分默认指向了方正宋体。这一点可以在字体文件中得到验证：
 
 ![WPS-office fonts](https://www.z4a.net/images/2017/12/18/wps-font.png)
 

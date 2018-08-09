@@ -3,7 +3,7 @@
 hr {
   margin: 0 2em;
   border: 0;
-  border-right: 1px solid rgba(128,128,128,0.1);
+  border-right: 1px solid rgba(128, 128, 128, .1);
 }
 
 body {
@@ -11,6 +11,10 @@ body {
   @include flex(column);
   background: #fff;
   margin: 0;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .tags-content {
@@ -30,7 +34,8 @@ body {
   padding: 0 30px;
 
   @include flex();
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 
   h2 {
     margin-bottom: 40px;
@@ -53,14 +58,20 @@ body {
 
 .articles {
   @include flex(column);
-  align-items: flex-start;
+  -webkit-box-align: start;
+     -ms-flex-align: start;
+        align-items: flex-start;
 
   a {
     margin-bottom: 20px;
   }
+}
 
-  a:hover {
-    color: #111;
+@media (min-width: 769px) {
+  .articles {
+    a:hover {
+      color: #111;
+    }
   }
 }
 
@@ -76,7 +87,7 @@ body {
   hr {
     margin: 2em 0;
     border: 0;
-    border-bottom: 1px solid rgba(128,128,128,0.1);
+    border-bottom: 1px solid rgba(128, 128, 128, .1);
   }
 
   .content {
