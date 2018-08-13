@@ -94,4 +94,5 @@ gitment_client_id: 76bb22ffd69cb9a2dc11
 gitment_secret: 1bc48766be80fbcb2802679ab796d76ac4fafe44
 # --- 评论设置 ---
 
+# theme: jekyll-theme-minimalism
 remote_theme: showzeng/Minimalism
