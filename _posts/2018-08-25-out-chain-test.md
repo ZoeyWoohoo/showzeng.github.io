@@ -3,7 +3,6 @@ title: 外链测试
 date:  2018-08-25 11:49:33 +0800
 category: Minimalism
 tags: test
-comment: false
 excerpt: 各种外链的样式测试，本篇页面较多音视频资源加载，有的也需要科学上网。
 ---
 
