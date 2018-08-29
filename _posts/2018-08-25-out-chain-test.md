@@ -42,19 +42,19 @@ Youtube 的嵌入代码直接使用就可以了 (当然，前提是需要科学�
 
 ### 优酷视频
 
-<iframe height="498" width="100%" src='http://player.youku.com/embed/XMzA0MTU5MzQ1Ng==' frameborder="0" allowfullscreen></iframe>
+<iframe height="498" width="100%" src='https://player.youku.com/embed/XMzA0MTU5MzQ1Ng==' frameborder="0" allowfullscreen></iframe>
 
 通过 iframe 引入时，同样需要修改一下格式，例如加上引号等 (如果觉得太小，可以给视频类的宽度设为 100%)，如下：
 
 ```html
 <!-- before -->
 <iframe height=498 width=510
- src='http://player.youku.com/embed/XMzA0MTU5MzQ1Ng=='
+ src='https://player.youku.com/embed/XMzA0MTU5MzQ1Ng=='
  frameborder=0 'allowfullscreen'></iframe>
 
 <!-- after -->
 <iframe height="498" width="100%"
- src='http://player.youku.com/embed/XMzA0MTU5MzQ1Ng=='
+ src='https://player.youku.com/embed/XMzA0MTU5MzQ1Ng=='
  frameborder="0" allowfullscreen></iframe>
 ```
 
@@ -62,13 +62,13 @@ Youtube 的嵌入代码直接使用就可以了 (当然，前提是需要科学�
 
 ```html
 <!-- before -->
-<embed src='http://player.youku.com/player.php/sid/XMzA0MTU5MzQ1Ng==/v.swf'
+<embed src='https://player.youku.com/player.php/sid/XMzA0MTU5MzQ1Ng==/v.swf'
  allowFullScreen='true' quality='high'
  width='480' height='400' align='middle'
  allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
 
 <!-- after -->
-<embed src='http://player.youku.com/player.php/sid/XMzA0MTU5MzQ1Ng==/v.swf'
+<embed src='https://player.youku.com/player.php/sid/XMzA0MTU5MzQ1Ng==/v.swf'
  allowFullScreen='true' quality='high'
  width='100%' height='400' align='middle'
  allowScriptAccess='always' type='application/x-shockwave-flash'>
